@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>《AI Benchmark 与评估》v0.1.0 独立完整审查报告</title>
+<style>
+  :root { --ink:#18242b; --navy:#123f52; --cyan:#0f7189; --paper:#fff; --soft:#eef5f6; --line:#cddadd; --major:#a33b2b; }
+  * { box-sizing:border-box; }
+  html { background:#edf1f2; }
+  body { margin:0; color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; line-height:1.72; }
+  .header { background:linear-gradient(135deg,#0d3445,#176277); color:white; padding:48px max(7vw,32px) 36px; }
+  .header .kicker { letter-spacing:.12em; text-transform:uppercase; font-size:12px; opacity:.75; }
+  .header h1 { max-width:1050px; margin:12px 0 18px; font-size:clamp(28px,4vw,48px); line-height:1.2; }
+  .header .meta { display:flex; flex-wrap:wrap; gap:20px; font-size:13px; color:#c7e5ea; }
+  .metrics { display:grid; grid-template-columns:repeat(4,minmax(120px,1fr)); background:white; border-bottom:1px solid var(--line); }
+  .metric { padding:20px; text-align:center; border-right:1px solid var(--line); }
+  .metric strong { display:block; color:var(--navy); font-size:29px; line-height:1.1; }
+  .metric span { display:block; margin-top:5px; color:#536970; font-size:12px; }
+  main { max-width:1100px; margin:0 auto; padding:48px 48px 80px; background:var(--paper); }
+  h1:first-child { display:none; }
+  h2 { margin:45px 0 18px; padding-bottom:8px; color:var(--navy); border-bottom:2px solid var(--navy); font-size:25px; }
+  h3 { margin:32px 0 12px; color:var(--navy); font-size:19px; }
+  h4 { color:var(--navy); }
+  p { margin:0 0 15px; }
+  a { color:var(--cyan); text-decoration-thickness:1px; text-underline-offset:2px; }
+  code { padding:2px 5px; background:var(--soft); border-radius:4px; font-family:"SFMono-Regular",Consolas,monospace; font-size:.9em; }
+  table { width:100%; border-collapse:collapse; margin:18px 0 28px; font-size:13px; }
+  th { background:var(--navy); color:white; text-align:left; padding:10px 12px; }
+  td { padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+  tr:nth-child(even) td { background:#f7fafb; }
+  blockquote { margin:20px 0; padding:14px 18px; background:var(--soft); border-left:4px solid var(--cyan); }
+  li { margin:7px 0; }
+  strong { color:#102f3b; }
+  @media (max-width:720px) { .metrics{grid-template-columns:repeat(2,1fr)} main{padding:30px 20px 60px} table{display:block;overflow-x:auto} }
+  @media print {
+    @page { size:A4; margin:16mm 15mm 18mm; }
+    html,body { background:white; font-size:10.2pt; }
+    .header { margin:-16mm -15mm 0; padding:28mm 18mm 18mm; break-after:page; }
+    .metrics { display:none; }
+    main { max-width:none; padding:0; }
+    h2 { break-after:avoid; margin-top:24px; font-size:17pt; }
+    h3 { break-after:avoid; font-size:13pt; }
+    table { break-inside:auto; font-size:8.4pt; }
+    tr { break-inside:avoid; }
+    a { color:inherit; text-decoration:none; }
+  }
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="kicker">Independent content, evidence and implementation review</div>
+  <h1>《AI Benchmark 与评估》v0.1.0 独立完整审查报告</h1>
+  <div class="meta"><span>审查日期：2026-08-23</span><span>冻结版本：v0.1.0</span><span>结论：Beta 可用 / v1.0 No-Go</span></div>
+</header>
+<section class="metrics" aria-label="审查摘要">
+  <div class="metric"><strong>16</strong><span>逐章审查</span></div>
+  <div class="metric"><strong>121</strong><span>来源健康检查</span></div>
+  <div class="metric"><strong>70</strong><span>Radar 全量审计</span></div>
+  <div class="metric"><strong>6</strong><span>Major 发布阻断项</span></div>
+</section>
+<main class="content"><h1 id="《ai-benchmark-与评估》v0-1-0-独立完整审查报告" tabindex="-1">《AI Benchmark 与评估》v0.1.0 独立完整审查报告 <a class="header-anchor" href="#《ai-benchmark-与评估》v0-1-0-独立完整审查报告" aria-label="Permalink to &quot;《AI Benchmark 与评估》v0.1.0 独立完整审查报告&quot;">&ZeroWidthSpace;</a></h1>
+<h2 class="section-title">Executive Summary</h2>
+<p><strong>执行结论：这是一部方向正确、骨架优秀、具有明显原创综合价值的 beta 教材，但当前不应以“完成版 v1.0 系统教材 + 两套完整企业 benchmark”对外发布。</strong> 它已经适合内部评阅、课程试讲和受控 beta；在 6 项 Major 问题关闭前，不适合作为读者可以无监督照做的权威实践手册。</p>
+<p>Review disposition: beta-ready, while v1.0 remains blocked by six major remediations.</p>
+<p>最值得保留的核心不是项目清单，而是贯穿全书的决策链：<strong>决策用途 → 构念 → 任务宇宙 → 环境/Grader → Model × Harness × Skill 实验 → 企业授权与复证</strong>。Harness 双赛道、Skill 作为可验证干预、终态优先、风险 veto、能力证据到生产授权，这些内容把模型评测与数字员工治理连在了一起，形成了区别于一般 benchmark 综述的主张。</p>
+<p>问题主要不在这条主线，而在“证据、实现和编辑承诺没有追上主线”：两条论文链接明确错误；121 条来源没有映射到正文事实且全部元数据仍标为未核验；统计公式在网站上无法渲染；两套代码只是在预设标签上构造必然胜出的确定性结果，并非正文描述的 OMS/WMS 或 PLM 状态环境；固定章节结构、证据标签与练习答案没有一致实现；公平、数据/劳动治理、人因、RAG 分层和在线评测还不足以支撑“体系化实践教材”的完整承诺。</p>
+<h2 class="section-title">Introduction — 审查范围与判定标准</h2>
+<p>审查覆盖 16 章正文、阅读指南、Radar、全部附录、121 条来源账本、70 项 benchmark 目录、7 个模板、两套案例任务/runner/grader/tests/results、VitePress 与 GitHub Pages 配置。冻结对象是当前 v0.1.0；本轮没有修改原书内容。</p>
+<p>我采用八个维度：真实性与证据完整性、范围完整性、体系性、明确性、方法正确性、实践真实性、教学可用性、治理与可持续性。严重度不是按问题数量投票：一个 Major 不会被多个优点抵消。完整协议见 <a href="./review_protocol.md">review_protocol.md</a>，逐章证据见 <a href="./chapter_matrix.md">chapter_matrix.md</a>，全部问题见 <a href="./issue_register.md">issue_register.md</a>。</p>
+<h3 id="成熟度判断" tabindex="-1">成熟度判断 <a class="header-anchor" href="#成熟度判断" aria-label="Permalink to &quot;成熟度判断&quot;">&ZeroWidthSpace;</a></h3>
+<table tabindex="0">
+<thead>
+<tr>
+<th>维度</th>
+<th style="text-align:right">成熟度（1–5）</th>
+<th>判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>真实性与证据完整性</td>
+<td style="text-align:right">2</td>
+<td>主线大多可信，但存在已证实错链；来源无法逐项支撑正文，元数据均未核验。</td>
+</tr>
+<tr>
+<td>范围完整性</td>
+<td style="text-align:right">3</td>
+<td>历史—原理—系统—企业—治理覆盖广；若干横切主题只有点到为止。</td>
+</tr>
+<tr>
+<td>体系性</td>
+<td style="text-align:right">4</td>
+<td>全书教学依赖关系清楚；SUT 与测量协议边界有一处关键混用。</td>
+</tr>
+<tr>
+<td>明确性</td>
+<td style="text-align:right">3</td>
+<td>大量边界写得好；作者提案、启发式、外部标准和未来推测未稳定标识。</td>
+</tr>
+<tr>
+<td>方法正确性</td>
+<td style="text-align:right">3</td>
+<td>核心实验思想正确；统计细节和效度理论表述尚不足以防止错误实现。</td>
+</tr>
+<tr>
+<td>实践真实性</td>
+<td style="text-align:right">2</td>
+<td>文字案例接近企业问题，代码却没有状态、工具、副作用和真实 grader。</td>
+</tr>
+<tr>
+<td>教学可用性</td>
+<td style="text-align:right">3</td>
+<td>导航和叙事优秀；公式坏、答案弱、固定结构未兑现，妨碍自学闭环。</td>
+</tr>
+<tr>
+<td>治理与可持续性</td>
+<td style="text-align:right">3</td>
+<td>复证/退役思想强；Radar 数据模型与页面政策不一致，维护机制未落地。</td>
+</tr>
+</tbody>
+</table>
+<p>这里不计算平均总分。当前发布门禁由 6 项 Major 决定，而不是由 2.9 或 3.1 之类的小数决定。</p>
+<h2 class="section-title">Main Analysis — 关键发现</h2>
+<h3 id="_1-真实性-核心方法可信-但证据链不足且存在两条确证错误" tabindex="-1">1. 真实性：核心方法可信，但证据链不足且存在两条确证错误 <a class="header-anchor" href="#_1-真实性-核心方法可信-但证据链不足且存在两条确证错误" aria-label="Permalink to &quot;1. 真实性：核心方法可信，但证据链不足且存在两条确证错误&quot;">&ZeroWidthSpace;</a></h3>
+<p>第 10 章把 SWE-Skills-Bench 链接到 <code>arXiv:2604.01407</code>，该链接实际是高频引力波论文；正确论文是 <code>arXiv:2603.15401</code>。第 13 章把 SupChain-Bench 链接到 <code>arXiv:2602.05395</code>，实际是高效推理中的贝叶斯停止论文；正确论文是 <code>arXiv:2602.07342</code>。这不是“页面临时打不开”，而是标题—标识符事实错误，已在四个 arXiv 原始摘要页交叉确认。[7][8][9][10]</p>
+<p>自动清点得到 414 个正文叙述段落、40 个外链、35 个唯一外链，但没有 claim-level inline citation。121 个注册来源中只有 14 个 URL 被正文外链精确使用；而 121 个来源记录的 <code>metadata_status</code> 全部是 <code>unverified</code>。这不能证明正文错误，但说明读者无法判断一句历史事实、项目能力或研究结论究竟由哪条证据支持。现有研究层 <code>claims.jsonl</code> 只有 16 条主张，其中 4 条为 partial，也远不能覆盖一本 16 章教材。</p>
+<p>链接健康检查中，121 条来源有 109 条可访问、12 条返回访问控制（均为 403）；70 项 Radar 有 65 条可访问、5 条访问受限。403 不能被写成死链，也不能作为元数据已核验或内容支持主张的证据。</p>
+<p><strong>判定：Major。</strong> 在引用体系补齐前，“真实”只能理解为审查抽样没有推翻主线，不能理解为全书事实已被系统验证。</p>
+<h3 id="_2-体系性-主干出色-但系统边界需要一次统一建模" tabindex="-1">2. 体系性：主干出色，但系统边界需要一次统一建模 <a class="header-anchor" href="#_2-体系性-主干出色-但系统边界需要一次统一建模" aria-label="Permalink to &quot;2. 体系性：主干出色，但系统边界需要一次统一建模&quot;">&ZeroWidthSpace;</a></h3>
+<p>全书最强的结构是从测量目的向生产授权逐层推进。第 4–6 章把构念、任务宇宙、环境和 grader 连起来；第 8–11 章把 Agent/Harness/Skill 从模型名中拆开；第 12–15 章再把结果放回岗位、权限、事故与复证。这与 HELM 强调场景、多指标和透明披露的方向一致，也与 BetterBench 强调 benchmark 全生命周期质量的框架相容。[1][2]</p>
+<p>但第 1 章把 <code>Model × Harness × Skill × Environment × Grader × Budget × Policy</code> 整体称作“被测单位”，第 3 章又正确地把 grader/protocol 放入测量条件。建议统一为四层：</p>
+<ol>
+<li><strong>System under test</strong>：Model、Harness、Skill、工具与版本；</li>
+<li><strong>Operational context</strong>：环境、数据、权限与政策；</li>
+<li><strong>Observation protocol</strong>：任务暴露、预算、trial、Grader 与人工流程；</li>
+<li><strong>Decision rule</strong>：指标、阈值、veto、外推范围与授权动作。</li>
+</ol>
+<p>否则团队可能在比较系统时偷偷更换 grader，或把更高预算获得的分数误解为系统固有能力。</p>
+<p><strong>判定：Moderate，但主干本身为强项。</strong></p>
+<h3 id="_3-时效与无歧义-若干综合判断被写成了稳定事实" tabindex="-1">3. 时效与无歧义：若干综合判断被写成了稳定事实 <a class="header-anchor" href="#_3-时效与无歧义-若干综合判断被写成了稳定事实" aria-label="Permalink to &quot;3. 时效与无歧义：若干综合判断被写成了稳定事实&quot;">&ZeroWidthSpace;</a></h3>
+<p>第 8 章说 BFCL、ToolBench 和 API-Bank “主要诊断前两层”。这对理解证据层级有帮助，却压平了项目和版本差异：API-Bank 原论文明确覆盖 planning、retrieval 与 calling；BFCL V3 加入多轮交互，V4 官方定位已是 holistic agentic evaluation。[5][6] 正确写法应是按 benchmark 版本、环境状态和可执行深度做表格，而非把三个项目合成一句稳定属性。</p>
+<p>类似问题还包括：</p>
+<ul>
+<li>“能力执照/Capability License”是本书很有价值的治理综合，但没有被标成作者提出的抽象，容易被读者误认作已建立的行业标准；</li>
+<li>20–50 个锚题、30/60/90 天路线是合理起点，但属于情境化启发式，不是普遍样本量或建设周期；</li>
+<li>第 16 章六个“未来”用确定语气写作，而阅读指南承诺会区分未来推测；</li>
+<li>第 4 章把“后果证据”平铺为效度证据类别，没有说明测试后果在效度理论中的角色存在争议。正式测量实践应明确所采用的框架；AERA/APA/NCME 的《教育与心理测试标准》可作为权威入口。[4]</li>
+</ul>
+<p><strong>判定：Moderate。</strong> 这些主张多数不是错误，而是“声音标签”缺失导致的不必要歧义。</p>
+<h3 id="_4-方法-核心实验设计正确-统计附录不足以保证正确复现" tabindex="-1">4. 方法：核心实验设计正确，统计附录不足以保证正确复现 <a class="header-anchor" href="#_4-方法-核心实验设计正确-统计附录不足以保证正确复现" aria-label="Permalink to &quot;4. 方法：核心实验设计正确，统计附录不足以保证正确复现&quot;">&ZeroWidthSpace;</a></h3>
+<p>书中反复要求按任务配对、全交叉 Model × Harness × Skill、多 trial、报告交互、风险 veto、成本和尾延迟，这些是正确且实用的教学重点。问题出在从概念到估计量的最后一公里：</p>
+<ul>
+<li>二元严格成功的混合效应式在正文没有写 link function；</li>
+<li>两层 bootstrap 没有明确同一重采样任务内保留 A/B 系统配对和 trial 对齐；</li>
+<li><code>成本 / strict success</code> 在成功数为零时没有定义 NA、∞ 或区间策略；</li>
+<li>没有给出聚类结构、共同故障、缺失运行、早停和多重比较的最小可运行统计示例；</li>
+<li>统计附录中的 <code>$$</code>、<code>\hat p</code>、<code>\operatorname</code> 在 production HTML 中原样显示，因为当前 VitePress 配置没有数学渲染器。</li>
+</ul>
+<p>公式渲染缺陷已经在 <code>docs/.vitepress/dist/appendix/statistics.html</code> 中验证，因此不仅是 Markdown 风格问题。读者最需要谨慎的部分恰好成为最不可读的部分。</p>
+<p><strong>判定：Major（由发布渲染故障触发）；统计内容本身为 Moderate。</strong></p>
+<h3 id="_5-两个案例-业务叙事完整-最小实现并不完整" tabindex="-1">5. 两个案例：业务叙事完整，最小实现并不完整 <a class="header-anchor" href="#_5-两个案例-业务叙事完整-最小实现并不完整" aria-label="Permalink to &quot;5. 两个案例：业务叙事完整，最小实现并不完整&quot;">&ZeroWidthSpace;</a></h3>
+<p>第 13、14 章的文字蓝图有明显优点：合成企业有清楚边界，频率与风险分开，权限/赔付/安全 veto 明确，硬件章反复说明离线 twin 不证明物理产品安全，也没有用模拟 pass 冒充 HIL 证据。这些边界值得保留。</p>
+<p>但实际代码的 <code>Task</code> 只有 required/forbidden action、evidence 标签、escalation 和 critical；没有初始 OMS/WMS/PLM 状态、可见输入、工具 schema、权限、目标/禁止终态或备选正确路径。两个 executor 还使用完全相同的位置规则：模型补第 2 个动作，Harness 补第 3 个动作及证据，Skill 补余下动作。所谓强组合通过，是因为程序按 gold 标签构造输出，而不是 Agent 在环境中完成任务。Grader 只是集合覆盖，不读取或修改订单、BOM、缺陷、审批或仪器状态。</p>
+<p>3 个 trial 对确定性函数重复三次，得到 384 行格式正确但无随机性信息的数据。6 个测试验证矩阵大小、标签和预设候选占优，却没有验证替代正确路径、near miss、危险捷径、reset、幂等、状态竞争、工具故障、schema 损坏和结果重建。代码中的“deterministic teaching policy”免责声明是诚实的，因此结果不是造假；缺陷在于首页和章名把它们称作“两套可运行的完整企业评测实践/完整项目”。</p>
+<p><strong>判定：Major。</strong> 两种可接受修复路径是：把当前实现明确降级为“runner/schema 教学骨架”；或实现最小状态化 twin，使承诺成为事实。若维持“完整项目”定位，应选择后者。</p>
+<h3 id="_6-完整性-纵向链路完整-横向责任主题仍薄" tabindex="-1">6. 完整性：纵向链路完整，横向责任主题仍薄 <a class="header-anchor" href="#_6-完整性-纵向链路完整-横向责任主题仍薄" aria-label="Permalink to &quot;6. 完整性：纵向链路完整，横向责任主题仍薄&quot;">&ZeroWidthSpace;</a></h3>
+<p>相对一般大模型综述，本书已经覆盖历史、测量、模型、Agent、Harness、Skill、FDE、双行业案例、生产治理和未来，纵向链路是完整的。缺少的不是再列 50 个 benchmark，而是让以下横切主题达到“读者可据此设计”的深度：</p>
+<ul>
+<li><strong>公平与子群有效性</strong>：方言、语言、地区、客户群、设备/渠道、专家资格差异如何分层抽样、报告差距并设置门禁；</li>
+<li><strong>数据与劳动治理</strong>：任务日志和员工轨迹的同意、最小化、脱敏、申诉、岗位标准固化与监控压力；</li>
+<li><strong>RAG 分层评测</strong>：检索召回、证据适用性、生成归因、动作终态不能只用端到端成功率混在一起；</li>
+<li><strong>在线与人机评测</strong>：A/B 的随机化单位、干预溢出、学习效应、人工接管、自动化偏见和长期后果；</li>
+<li><strong>安全与评测安全</strong>：提示注入、grader 攻击、隐藏集泄漏、参赛者权限与评测基础设施威胁模型；</li>
+<li><strong>开放产物评价</strong>：pairwise、rubric、Bradley–Terry/Elo 类汇总的适用边界和位置偏差。</li>
+</ul>
+<p>NIST AI RMF Generative AI Profile 把测量放在治理、映射和风险管理闭环中，并明确面向可信与负责任 AI 风险；它是检查上述治理覆盖的合适外部参照，而不是要求本书变成合规手册。[3]</p>
+<p><strong>判定：Major，针对“体系化并能指导实践”的定位；若定位改为 Agent/数字员工 benchmark 专著，可降为 Moderate。</strong></p>
+<h3 id="_7-教学与站点-叙事可读-学习契约和产物有断点" tabindex="-1">7. 教学与站点：叙事可读，学习契约和产物有断点 <a class="header-anchor" href="#_7-教学与站点-叙事可读-学习契约和产物有断点" aria-label="Permalink to &quot;7. 教学与站点：叙事可读，学习契约和产物有断点&quot;">&ZeroWidthSpace;</a></h3>
+<p>阅读指南承诺每章有本章问题、核心叙事、双案例镜头、实践检查单、练习和来源说明，并用四种证据声音区分来源事实、综合判断、实践建议和未来推测。实际清点中 6 章没有来源段，多章没有双案例镜头或检查单，也没有显式“带走的问题”；正文没有视觉标签或引文让读者辨认四种声音。</p>
+<p>练习答案只对第 1–6 章逐章回答，第 7–11 章合并为一段，第 12–16 章再合并为一段。两个完整案例共十个练习，却没有对应的参考 Task Spec、状态断言、grader 测试、预注册或 release gate 产物。因而“毕业标准”在教学上不可验收。</p>
+<p>工程层面表现较好：<code>npm run docs:build</code> 成功，两个域的 6 个 unit tests 全部通过；本地搜索、导航、GitHub project-page base 和下载入口配置清楚。当前检查没有进行完整 WCAG/屏幕阅读器审计；built HTML 中 logo <code>alt</code> 为空，建议把可访问性自动检查加入 CI。</p>
+<p><strong>判定：Major（学习契约），工程构建本身通过。</strong></p>
+<h3 id="_8-治理与维护-思想强-radar-还不是动态系统" tabindex="-1">8. 治理与维护：思想强，Radar 还不是动态系统 <a class="header-anchor" href="#_8-治理与维护-思想强-radar-还不是动态系统" aria-label="Permalink to &quot;8. 治理与维护：思想强，Radar 还不是动态系统&quot;">&ZeroWidthSpace;</a></h3>
+<p>第 15 章的版本化、复证、事故回归、权限分级和 benchmark 退役是全书另一强项。Radar 的 70 项覆盖也足以作为学习导航。但 Radar 页面定义 <code>active / audited / saturated / revised / retired</code> 五种生命周期状态，CSV 唯一相关字段却是 <code>maturity</code>，值只有 <code>foundational / established / evolving</code>；70 行均无 <code>status</code>、<code>version</code>、<code>last_verified</code>、<code>revision_reason</code> 或 <code>retired_at</code>。页面描述的治理对象在下载数据里不存在。</p>
+<p>因此它当前是“有用的静态目录”，还不是“动态 Radar”。需要把 owner、核验时间、项目版本、来源状态、变更原因和退役日志变成数据字段，并用 CI 做断链和 schema 检查。</p>
+<p><strong>判定：Moderate。</strong></p>
+<h2 class="section-title">Synthesis — 五类审稿人的交叉质疑</h2>
+<h3 id="学术审稿人" tabindex="-1">学术审稿人 <a class="header-anchor" href="#学术审稿人" aria-label="Permalink to &quot;学术审稿人&quot;">&ZeroWidthSpace;</a></h3>
+<p>会认可跨心理测量、软件测试和 Agent eval 的综合，但会拒绝“121 条来源”等同于证据充分。其主要要求是逐项引文、理论框架归属、统计估计量与不确定性、对动态项目按版本描述。两条 arXiv 错链会显著降低其对其余引用的先验信任。</p>
+<h3 id="怀疑性实践者" tabindex="-1">怀疑性实践者 <a class="header-anchor" href="#怀疑性实践者" aria-label="Permalink to &quot;怀疑性实践者&quot;">&ZeroWidthSpace;</a></h3>
+<p>会问：“照着代码跑出的高分，能否让我放心发货？”答案目前是否定的。案例教会了字段和矩阵，却没有证明任何业务动作完成。若书明确称其为 schema skeleton，他会接受；若继续称完整 benchmark，他会认为宣传过度。</p>
+<h3 id="企业-fde" tabindex="-1">企业 FDE <a class="header-anchor" href="#企业-fde" aria-label="Permalink to &quot;企业 FDE&quot;">&ZeroWidthSpace;</a></h3>
+<p>会高度认可岗位切片、流程发现、事故入题、权限和复证，但仍需要数据采集授权、员工参与、申诉、跨客户差异、现状基线采样偏差和生产 readout 设计。否则 benchmark 可能把一个坏流程数字化并固化。</p>
+<h3 id="实现工程师" tabindex="-1">实现工程师 <a class="header-anchor" href="#实现工程师" aria-label="Permalink to &quot;实现工程师&quot;">&ZeroWidthSpace;</a></h3>
+<p>会认可无依赖 runner 易读、build 与 tests 稳定，但会指出 schema 没有 environment contract，grader 与 executor 共用 gold 语义，trial 没有随机性，release gate 未执行，模板 pass rule 不能机器解释。最小实现缺少真正的验证边界。</p>
+<h3 id="第一次学习者" tabindex="-1">第一次学习者 <a class="header-anchor" href="#第一次学习者" aria-label="Permalink to &quot;第一次学习者&quot;">&ZeroWidthSpace;</a></h3>
+<p>会喜欢叙事和两条案例线，但可能把作者提案误当标准，把启发式数字误当要求，也会在统计附录看到未渲染公式。缺少逐章答案意味着他无法知道自己的 Task Spec 和 grader 攻击测试是否合格。</p>
+<h2 class="section-title">Recommendations — 发布建议与修订顺序</h2>
+<h3 id="p0-关闭真实性和承诺风险-才可称-v1-0" tabindex="-1">P0：关闭真实性和承诺风险，才可称 v1.0 <a class="header-anchor" href="#p0-关闭真实性和承诺风险-才可称-v1-0" aria-label="Permalink to &quot;P0：关闭真实性和承诺风险，才可称 v1.0&quot;">&ZeroWidthSpace;</a></h3>
+<ol>
+<li>修正两条论文链接，对所有 benchmark 做标题—URL—年份自动一致性检查。</li>
+<li>建立 claim-level 引文：优先覆盖历史、数字、项目范围、研究结果、标准和争议；核验 121 条元数据，不把 403 写成死链。</li>
+<li>修复数学渲染并加 production HTML 回归检查。</li>
+<li>在“教学骨架”与“完整状态化案例”之间明确选择。若保留当前标题，至少实现一个共享可重置环境协议，再分别实现订单/库存状态和 PLM/变更状态；加入工具 trace、权限、副作用、幂等、故障注入、终态 grader 和 release gate。</li>
+<li>兑现或收缩阅读指南：每章结构与证据声音一致；为 16 章练习提供 rubric，两个案例提供可下载参考工件。</li>
+</ol>
+<p>P0 的验收不是“文案改过”，而是：零已知错链；关键主张可定位；公式正确渲染；一个未知候选可在不读 gold 的适配器中运行；grader attack tests 通过；另一位读者可复现实验并得到相同统计摘要。</p>
+<h3 id="p1-补足系统教材的横切能力" tabindex="-1">P1：补足系统教材的横切能力 <a class="header-anchor" href="#p1-补足系统教材的横切能力" aria-label="Permalink to &quot;P1：补足系统教材的横切能力&quot;">&ZeroWidthSpace;</a></h3>
+<p>新增两个集中章节或四个附录模块：责任与子群评测；RAG/开放产物/在线人机评测；评测基础设施安全；统计实现 cookbook。把 Capability License 明示为本书提案，把 20–50 和 30/60/90 标为示例起点。统一 SUT—context—protocol—decision 四层术语。</p>
+<h3 id="p2-让-radar-和来源真正可维护" tabindex="-1">P2：让 Radar 和来源真正可维护 <a class="header-anchor" href="#p2-让-radar-和来源真正可维护" aria-label="Permalink to &quot;P2：让 Radar 和来源真正可维护&quot;">&ZeroWidthSpace;</a></h3>
+<p>为 catalog 增加 benchmark/version/status/last_verified/source_verified/owner/change_reason 字段；加入 schema、重复 ID、链接健康、标题匹配和 retired/revised changelog；将站点页由 CSV 生成，避免页面政策和数据词汇再次漂移。明确正文、代码、数据、模板和第三方材料各自许可。</p>
+<h3 id="最终门禁" tabindex="-1">最终门禁 <a class="header-anchor" href="#最终门禁" aria-label="Permalink to &quot;最终门禁&quot;">&ZeroWidthSpace;</a></h3>
+<table tabindex="0">
+<thead>
+<tr>
+<th>发布形态</th>
+<th>当前结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内部评审/课程试讲</td>
+<td><strong>Go</strong>，但需向读者披露 beta 与案例骨架边界</td>
+</tr>
+<tr>
+<td>公开 beta</td>
+<td><strong>Conditional Go</strong>，先修复两条错链和公式渲染，并在首页降低“完整项目”承诺</td>
+</tr>
+<tr>
+<td>v1.0 权威系统教材</td>
+<td><strong>No-Go</strong>，关闭 M-01 至 M-06 后复审</td>
+</tr>
+<tr>
+<td>作为真实数字员工上线资格模板</td>
+<td><strong>No-Go</strong>，代码与统计不得直接用于生产授权</td>
+</tr>
+</tbody>
+</table>
+<h3 id="优点清单-修订时不要误伤" tabindex="-1">优点清单：修订时不要误伤 <a class="header-anchor" href="#优点清单-修订时不要误伤" aria-label="Permalink to &quot;优点清单：修订时不要误伤&quot;">&ZeroWidthSpace;</a></h3>
+<ul>
+<li>决策用途先于分数，贯穿全书；</li>
+<li>Model/Harness/Skill/Environment 的交叉归因视角；</li>
+<li>locked-capability 与 native-product 双赛道；</li>
+<li>终态优先、轨迹诊断、危险副作用 veto；</li>
+<li>高频集与风险集分开；</li>
+<li>人类基线条件化，而非抽象“超过人类”；</li>
+<li>硬件离线 twin 与 HIL/物理安全的边界；</li>
+<li>从 benchmark 到权限、到期、复证和退役的治理闭环；</li>
+<li>合成案例被明确标注，没有冒充公开真实企业结果。</li>
+</ul>
+<h2 class="section-title">Counterevidence Register</h2>
+<p>为避免把缺陷夸大成整书失效，本轮主动保留以下反证：</p>
+<table tabindex="0">
+<thead>
+<tr>
+<th>初始质疑</th>
+<th>反证</th>
+<th>最终解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“代码结果是否造假”</td>
+<td>两个 executor 都明写 deterministic teaching policy，方法附录也声明不是真实模型结果</td>
+<td>不是造假；是“完整项目”的产品承诺强于实现</td>
+</tr>
+<tr>
+<td>“来源不可访问是否等于死链”</td>
+<td>121 条中 109 条、Radar 70 条中 65 条可访问；其余均是访问控制</td>
+<td>不判死链，只判元数据/主张支持未完成</td>
+</tr>
+<tr>
+<td>“案例是否误导物理安全”</td>
+<td>硬件章多次说明离线 twin 不证明 HIL 或产品安全</td>
+<td>边界写得好；问题仍是代码没有实现文字所述的数字状态环境</td>
+</tr>
+<tr>
+<td>“六个 Major 是否说明主线错误”</td>
+<td>构念—任务—grader—系统—实验—授权依赖关系前后一致，且与 HELM/BetterBench 方向相容 [1][2]</td>
+<td>主线可保留，v1.0 阻断来自证据、实现和教学闭环</td>
+</tr>
+</tbody>
+</table>
+<h2 class="section-title">Claims-Evidence Table</h2>
+<table tabindex="0">
+<thead>
+<tr>
+<th>Claim</th>
+<th>支持状态</th>
+<th>主要证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>两条论文链接事实错误</td>
+<td>Supported</td>
+<td>四个 arXiv 原始摘要页 [7][8][9][10]</td>
+</tr>
+<tr>
+<td>正文缺少 claim-level 引文</td>
+<td>Supported</td>
+<td><code>content_inventory.json</code> 全量结构清点</td>
+</tr>
+<tr>
+<td>代码不是状态化业务环境</td>
+<td>Supported</td>
+<td><code>benchmark_core.py</code> 与两个 <code>run.py</code> 逐行审查</td>
+</tr>
+<tr>
+<td>数学在发布 HTML 中未渲染</td>
+<td>Supported</td>
+<td>production build 后 HTML 原始 TeX 检查</td>
+</tr>
+<tr>
+<td>BFCL/API-Bank 范围概括过时</td>
+<td>Supported</td>
+<td>API-Bank 原论文与 BFCL 官方版本说明 [5][6]</td>
+</tr>
+<tr>
+<td>所有外部事实均已复核</td>
+<td>Not claimed</td>
+<td>本轮明确采用风险分层抽样，不作此推断</td>
+</tr>
+</tbody>
+</table>
+<h2 class="section-title">Limitations — 审查限制</h2>
+<p>本轮对结构、链接、代码和构建做了全量检查，对外部事实做风险分层抽样，不是逐句重做 34,000 余汉字的独立系统综述。URL 可访问不代表来源内容支持某句正文；403 也不代表来源不存在。没有邀请供应链、硬件、心理测量、劳动治理和统计学五类人类专家签字背书，没有连接真实模型 API、企业系统或 HIL，也没有完成 WCAG/屏幕阅读器审计。因此本报告可以证明已列问题存在，不能证明未列问题不存在。</p>
+<h2 class="section-title">Methodology — 方法附录</h2>
+<p>执行的确定性检查包括：</p>
+<ul>
+<li>内容 inventory：16 章、414 个叙述段、外链、来源段和证据映射；</li>
+<li>121 条来源 URL 健康筛查及 70 项 Radar URL/schema 全量检查；</li>
+<li>四个 arXiv 标识符、API-Bank 与 BFCL 版本范围的原始来源核验；</li>
+<li>两套任务、共享 runner、grader、tests 与 results 的逐文件代码审查；</li>
+<li><code>python3 -m unittest discover -s examples -p 'test_*.py' -v</code>：6/6 通过；</li>
+<li><code>npm run docs:build</code>：VitePress 1.6.4 production build 通过；</li>
+<li>built HTML 检查：确认统计公式以原始 TeX 出现；</li>
+<li>五类审稿人竞争性解释审查。</li>
+</ul>
+<p>审查工件均在 <code>review/</code>，原书正文和实现未被本轮修改。</p>
+<section class="bibliography"><h2 class="section-title">Bibliography — 参考资料</h2>
+<p class="bib-entry"><span class="bib-number">[1]</span> Reuel et al. <a href="https://proceedings.neurips.cc/paper_files/paper/2024/hash/26889e8359e7ef8a7f5d77457364ca55-Abstract-Datasets_and_Benchmarks_Track.html" target="_blank" rel="noreferrer">BetterBench: Assessing AI Benchmarks, Uncovering Issues, and Establishing Best Practices</a>, NeurIPS 2024.</p>
+<p class="bib-entry"><span class="bib-number">[2]</span> Liang et al. <a href="https://arxiv.org/abs/2211.09110" target="_blank" rel="noreferrer">Holistic Evaluation of Language Models (HELM)</a>, TMLR 2023.</p>
+<p class="bib-entry"><span class="bib-number">[3]</span> NIST. <a href="https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence" target="_blank" rel="noreferrer">Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile</a>, 2024.</p>
+<p class="bib-entry"><span class="bib-number">[4]</span> AERA, APA, NCME. <a href="https://www.apa.org/science/programs/testing/standards" target="_blank" rel="noreferrer">Standards for Educational and Psychological Testing</a>.</p>
+<p class="bib-entry"><span class="bib-number">[5]</span> Li et al. <a href="https://aclanthology.org/2023.emnlp-main.187/" target="_blank" rel="noreferrer">API-Bank: A Comprehensive Benchmark for Tool-Augmented LLMs</a>, EMNLP 2023.</p>
+<p class="bib-entry"><span class="bib-number">[6]</span> Berkeley Function-Calling Leaderboard. <a href="https://gorilla.cs.berkeley.edu/leaderboard.html" target="_blank" rel="noreferrer">Official leaderboard and version overview</a>.</p>
+<p class="bib-entry"><span class="bib-number">[7]</span> <a href="https://arxiv.org/abs/2603.15401" target="_blank" rel="noreferrer">SWE-Skills-Bench</a>, 2026.</p>
+<p class="bib-entry"><span class="bib-number">[8]</span> <a href="https://arxiv.org/abs/2602.07342" target="_blank" rel="noreferrer">SupChain-Bench</a>, 2026.</p>
+<p class="bib-entry"><span class="bib-number">[9]</span> Kaaz et al. <a href="https://arxiv.org/abs/2604.01407" target="_blank" rel="noreferrer">High-frequency gravitational wave transients from superradiance</a>, 2026.（用于证明原书错链的实际目标。）</p>
+<p class="bib-entry"><span class="bib-number">[10]</span> Wang et al. <a href="https://arxiv.org/abs/2602.05395" target="_blank" rel="noreferrer">Optimal Bayesian Stopping for Efficient Inference-Time Scaling</a>, 2026.（用于证明原书错链的实际目标。）</p>
+</section></main>
+</body>
+</html>

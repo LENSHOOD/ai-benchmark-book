@@ -1,0 +1,10 @@
+{"claim_id":"REV-C001","claim":"两条章节论文链接与链接目标标题不一致，且目标是无关论文。","support_status":"supported","evidence_ids":["2b6c150c4718e6ca","e733ba61df7a531b","de50445981a41b74","0e277c781769f948"],"severity":"major"}
+{"claim_id":"REV-C002","claim":"正文缺乏 claim-level 引用，无法从具体事实回溯到 121 条来源。","support_status":"supported","evidence_ids":[],"local_evidence":"review/content_inventory.json; docs/book/*.md","severity":"major"}
+{"claim_id":"REV-C003","claim":"两套代码是确定性标签覆盖教学器，而非状态化业务环境。","support_status":"supported","evidence_ids":[],"local_evidence":"examples/benchmark_core.py:13-95; examples/*/run.py:16-39","severity":"major"}
+{"claim_id":"REV-C004","claim":"VitePress 发布产物未渲染统计附录中的 TeX。","support_status":"supported","evidence_ids":[],"local_evidence":"docs/.vitepress/dist/appendix/statistics.html; docs/.vitepress/config.mts:16-19","severity":"major"}
+{"claim_id":"REV-C005","claim":"阅读指南承诺的固定结构、证据声音和自学习答案未在全书一致实现。","support_status":"supported","evidence_ids":[],"local_evidence":"docs/start/index.md; review/content_inventory.json; docs/appendix/answers.md","severity":"major"}
+{"claim_id":"REV-C006","claim":"API-Bank 包含规划、检索和调用，BFCL 新版本已扩展到多轮与整体 agentic 评估。","support_status":"supported","evidence_ids":["70c8e03ceb4687b7","dcd5e4c574c15326"],"severity":"moderate"}
+{"claim_id":"REV-C007","claim":"所有 121 条来源元数据仍标记为 unverified。","support_status":"supported","evidence_ids":[],"local_evidence":"docs/public/downloads/sources.jsonl","severity":"major"}
+{"claim_id":"REV-C008","claim":"Radar 页面声明的生命周期状态在 70 行 CSV 中没有对应字段。","support_status":"supported","evidence_ids":[],"local_evidence":"docs/radar/index.md:26; review/catalog_audit.json","severity":"moderate"}
+{"claim_id":"REV-C009","claim":"生产构建和 6 个现有单元测试通过。","support_status":"supported","evidence_ids":[],"local_evidence":"2026-08-23 local verification log","severity":"observation"}
+{"claim_id":"REV-C010","claim":"书的构念、任务、grader、系统组件、实验、企业授权主线整体连贯且具有实践价值。","support_status":"supported","evidence_ids":["1a5b0d8d25517949","f0a019cde2fae9a7","aed5e9c65a601b9b"],"local_evidence":"review/chapter_matrix.md","severity":"strength"}

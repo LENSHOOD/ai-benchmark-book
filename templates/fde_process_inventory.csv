@@ -1,0 +1,2 @@
+process_id,role,trigger,input,expected_outcome,systems,knowledge_dependencies,happy_path,exceptions,frequency,human_minutes,sla,error_cost,reversible,risk_severity,evidence_source,owner
+PROC-001,,,,,,,,,,,,,,,,

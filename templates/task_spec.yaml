@@ -1,0 +1,51 @@
+task_id: DOMAIN-0001
+version: 1.0.0
+title: 清晰、结果导向的任务名称
+constructs:
+  - primary_construct
+source:
+  kind: production_failure  # expert_authored | log_replay | synthetic | public
+  provenance: 脱敏后的来源与审批记录
+  created_at: YYYY-MM-DD
+risk:
+  severity: critical  # low | medium | high | critical
+  reversible: false
+  maximum_loss: 0
+initial_state:
+  snapshot: environment/snapshot-id
+  virtual_time: YYYY-MM-DDTHH:MM:SSZ
+inputs:
+  prompt: |
+    给 Agent 的任务，不包含隐藏答案。
+  files: []
+  identities: []
+available_tools: []
+permissions:
+  allow: []
+  deny: []
+budgets:
+  wall_clock_seconds: 300
+  model_calls: 20
+  tool_calls: 50
+  cost_usd: 1.00
+success_criteria:
+  required_end_state: []
+  forbidden_end_state: []
+  required_process: []
+  forbidden_actions: []
+  escalation_expected: false
+  artifact_rubric: null
+grading:
+  pass_rule: all_required_end_state_and_critical_assertions
+  diagnostic_threshold: null
+  threshold_rationale: 如需连续分阈值，填写人工基线、损失函数与最小实际重要差异；不得复制通用魔法数字
+  critical_assertions: []
+human_baseline:
+  population: 领域专家
+  tools_and_time: 与被测系统的资源差异
+  sample_size: 0
+metadata:
+  tags: []
+  knowledge_version: null
+  environment_version: null
+  known_limitations: []

@@ -1,0 +1,68 @@
+:root {
+  --vp-c-brand-1: #17677e;
+  --vp-c-brand-2: #1d7d93;
+  --vp-c-brand-3: #2393a8;
+  --vp-c-brand-soft: rgba(23, 103, 126, 0.14);
+  --vp-font-family-base: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --vp-font-family-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+.dark {
+  --vp-c-brand-1: #65c7d8;
+  --vp-c-brand-2: #4eb1c5;
+  --vp-c-brand-3: #3898ad;
+  --vp-c-brand-soft: rgba(101, 199, 216, 0.14);
+}
+
+.VPHomeHero .name {
+  background: linear-gradient(110deg, #0f5268 15%, #2290a4 65%, #5d8b66);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.VPHomeHero .text { max-width: 760px; }
+.VPDoc p { line-height: 1.82; }
+.VPDoc li { margin: 0.35rem 0; line-height: 1.72; }
+.VPDoc h2 { border-top: 0; padding-top: 26px; }
+.VPDoc table { font-size: 14px; }
+.VPDoc blockquote { border-left: 3px solid var(--vp-c-brand-2); background: var(--vp-c-brand-soft); padding: 12px 18px; }
+.VPDoc blockquote > p { color: var(--vp-c-text-1); }
+.VPDoc .custom-block { border-radius: 10px; }
+.VPDoc code { overflow-wrap: anywhere; }
+
+/* Long bilingual titles and wide technical tokens must remain readable on phones. */
+@media (max-width: 639px) {
+  html, body { overflow-x: hidden; }
+  .VPHomeHero .container,
+  .VPHomeHero .main,
+  .VPHomeHero .name,
+  .VPHomeHero .text,
+  .VPHomeHero .tagline,
+  .VPFeatures .container,
+  .VPFeatures .items,
+  .VPFeature,
+  .VPDoc .container,
+  .VPDoc .content,
+  .VPDoc .content-container { min-width: 0; max-width: 100%; }
+  .VPHomeHero .name,
+  .VPHomeHero .text,
+  .VPDoc h1,
+  .VPDoc h2,
+  .VPDoc h3 { overflow-wrap: anywhere; word-break: break-word; }
+  .VPFeature { width: 100%; }
+}
+
+@media (min-width: 960px) {
+  .VPDoc:not(.has-sidebar) .content { max-width: 900px; }
+  .VPDoc.has-aside .content-container { max-width: 780px; }
+}
+
+@media print {
+  .VPNav, .VPSidebar, .VPDocAside, .VPFooter { display: none !important; }
+  .VPContent.has-sidebar { padding-left: 0 !important; }
+  .VPDoc .container, .VPDoc .content, .VPDoc .content-container { max-width: none !important; }
+  a { color: inherit !important; text-decoration: none !important; }
+  h2, h3 { break-after: avoid; }
+  pre, table, blockquote { break-inside: avoid; }
+}
