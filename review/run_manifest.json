@@ -1,0 +1,28 @@
+{
+  "version": "3.0.0",
+  "query": "独立审查《AI Benchmark 与评估》是否真实、完整、体系化、无歧义、可执行、可复现且可持续维护",
+  "mode": "ultradeep",
+  "started_at": "2026-08-23T15:28:41.114889+00:00",
+  "finished_at": "2026-08-23T15:48:14+00:00",
+  "assumptions": [
+    "URL reachability is not treated as claim support or metadata verification.",
+    "HTTP 401/403/429 responses are access blocks, not confirmed dead links.",
+    "The frozen v0.1.0 book is reviewed without silently applying fixes."
+  ],
+  "provider_config": {
+    "primary": "search-cli",
+    "scholarly": null
+  },
+  "report_dir": "review",
+  "artifact_paths": {
+    "sources": "sources.jsonl",
+    "evidence": "evidence.jsonl",
+    "claims": "claims.jsonl",
+    "report": "INDEPENDENT_REVIEW_REPORT.md",
+    "html": "INDEPENDENT_REVIEW_REPORT.html",
+    "pdf": "output/pdf/AI_Benchmark_Book_v0.1.0_Independent_Review_20260823.pdf",
+    "issues": "issue_register.md",
+    "chapter_matrix": "chapter_matrix.md"
+  },
+  "continuation": null
+}

@@ -1,0 +1,304 @@
+{
+  "chapters": [
+    {
+      "file": "01-why-eval.md",
+      "chinese_chars": 2154,
+      "h2": 9,
+      "h3": 1,
+      "paragraphs": 21,
+      "paragraphs_with_inline_citation": 0,
+      "external_links": 3,
+      "has_exercise": true,
+      "has_sources_section": true
+    },
+    {
+      "file": "02-history.md",
+      "chinese_chars": 2134,
+      "h2": 13,
+      "h3": 0,
+      "paragraphs": 23,
+      "paragraphs_with_inline_citation": 0,
+      "external_links": 5,
+      "has_exercise": true,
+      "has_sources_section": true
+    },
+    {
+      "file": "03-language.md",
+      "chinese_chars": 1729,
+      "h2": 10,
+      "h3": 0,
+      "paragraphs": 23,
+      "paragraphs_with_inline_citation": 0,
+      "external_links": 0,
+      "has_exercise": true,
+      "has_sources_section": false
+    },
+    {
+      "file": "04-measurement.md",
+      "chinese_chars": 2115,
+      "h2": 12,
+      "h3": 0,
+      "paragraphs": 30,
+      "paragraphs_with_inline_citation": 0,
+      "external_links": 3,
+      "has_exercise": true,
+      "has_sources_section": true
+    },
+    {
+      "file": "05-task-universe.md",
+      "chinese_chars": 2059,
+      "h2": 12,
+      "h3": 0,
+      "paragraphs": 25,
+      "paragraphs_with_inline_citation": 0,
+      "external_links": 0,
+      "has_exercise": true,
+      "has_sources_section": false
+    },
+    {
+      "file": "06-graders.md",
+      "chinese_chars": 1778,
+      "h2": 12,
+      "h3": 0,
+      "paragraphs": 25,
+      "paragraphs_with_inline_citation": 0,
+      "external_links": 3,
+      "has_exercise": true,
+      "has_sources_section": true
+    },
+    {
+      "file": "07-models.md",
+      "chinese_chars": 1960,
+      "h2": 13,
+      "h3": 0,
+      "paragraphs": 23,
+      "paragraphs_with_inline_citation": 0,
+      "external_links": 5,
+      "has_exercise": true,
+      "has_sources_section": true
+    },
+    {
+      "file": "08-agents.md",
+      "chinese_chars": 1624,
+      "h2": 12,
+      "h3": 0,
+      "paragraphs": 22,
+      "paragraphs_with_inline_citation": 0,
+      "external_links": 4,
+      "has_exercise": true,
+      "has_sources_section": true
+    },
+    {
+      "file": "09-harness.md",
+      "chinese_chars": 1664,
+      "h2": 12,
+      "h3": 0,
+      "paragraphs": 22,
+      "paragraphs_with_inline_citation": 0,
+      "external_links": 3,
+      "has_exercise": true,
+      "has_sources_section": true
+    },
+    {
+      "file": "10-skills.md",
+      "chinese_chars": 1486,
+      "h2": 12,
+      "h3": 0,
+      "paragraphs": 21,
+      "paragraphs_with_inline_citation": 0,
+      "external_links": 3,
+      "has_exercise": true,
+      "has_sources_section": true
+    },
+    {
+      "file": "11-experiments.md",
+      "chinese_chars": 1769,
+      "h2": 14,
+      "h3": 0,
+      "paragraphs": 27,
+      "paragraphs_with_inline_citation": 0,
+      "external_links": 0,
+      "has_exercise": true,
+      "has_sources_section": false
+    },
+    {
+      "file": "12-enterprise-fde.md",
+      "chinese_chars": 2966,
+      "h2": 12,
+      "h3": 10,
+      "paragraphs": 32,
+      "paragraphs_with_inline_citation": 0,
+      "external_links": 4,
+      "has_exercise": true,
+      "has_sources_section": true
+    },
+    {
+      "file": "13-commerce-supply-chain.md",
+      "chinese_chars": 2821,
+      "h2": 13,
+      "h3": 5,
+      "paragraphs": 32,
+      "paragraphs_with_inline_citation": 0,
+      "external_links": 4,
+      "has_exercise": true,
+      "has_sources_section": true
+    },
+    {
+      "file": "14-hardware-rnd.md",
+      "chinese_chars": 3269,
+      "h2": 13,
+      "h3": 6,
+      "paragraphs": 37,
+      "paragraphs_with_inline_citation": 0,
+      "external_links": 3,
+      "has_exercise": true,
+      "has_sources_section": true
+    },
+    {
+      "file": "15-governance.md",
+      "chinese_chars": 2035,
+      "h2": 13,
+      "h3": 0,
+      "paragraphs": 27,
+      "paragraphs_with_inline_citation": 0,
+      "external_links": 0,
+      "has_exercise": true,
+      "has_sources_section": false
+    },
+    {
+      "file": "16-future.md",
+      "chinese_chars": 2311,
+      "h2": 14,
+      "h3": 0,
+      "paragraphs": 24,
+      "paragraphs_with_inline_citation": 0,
+      "external_links": 0,
+      "has_exercise": true,
+      "has_sources_section": false
+    }
+  ],
+  "totals": {
+    "chapters": 16,
+    "chinese_chars": 33874,
+    "paragraphs": 414,
+    "paragraphs_with_inline_citation": 0,
+    "book_external_links": 40,
+    "unique_book_external_links": 35,
+    "registered_sources": 121,
+    "sources_used_as_exact_book_links": 14,
+    "sources_with_unverified_metadata": 121,
+    "unregistered_book_links": 24
+  },
+  "unregistered_book_links": [
+    {
+      "chapter": "02-history.md",
+      "url": "https://academic.oup.com/mind/article/LIX/236/433/986238"
+    },
+    {
+      "chapter": "02-history.md",
+      "url": "https://trec.nist.gov/overview.html"
+    },
+    {
+      "chapter": "02-history.md",
+      "url": "https://crfm.stanford.edu/helm/latest/"
+    },
+    {
+      "chapter": "02-history.md",
+      "url": "https://webarena.dev/"
+    },
+    {
+      "chapter": "02-history.md",
+      "url": "https://www.swebench.com/"
+    },
+    {
+      "chapter": "06-graders.md",
+      "url": "https://www.swebench.com/SWE-bench/guides/verified/"
+    },
+    {
+      "chapter": "07-models.md",
+      "url": "https://crfm.stanford.edu/helm/latest/"
+    },
+    {
+      "chapter": "07-models.md",
+      "url": "https://cevalbenchmark.com/"
+    },
+    {
+      "chapter": "07-models.md",
+      "url": "https://opencompass.org.cn/"
+    },
+    {
+      "chapter": "08-agents.md",
+      "url": "https://webarena.dev/"
+    },
+    {
+      "chapter": "08-agents.md",
+      "url": "https://os-world.github.io/"
+    },
+    {
+      "chapter": "08-agents.md",
+      "url": "https://appworld.dev/"
+    },
+    {
+      "chapter": "08-agents.md",
+      "url": "https://github.com/sierra-research/tau-bench"
+    },
+    {
+      "chapter": "09-harness.md",
+      "url": "https://www.anthropic.com/research/swe-bench-sonnet"
+    },
+    {
+      "chapter": "09-harness.md",
+      "url": "https://swe-agent.com/"
+    },
+    {
+      "chapter": "10-skills.md",
+      "url": "https://skillsbench.ai/"
+    },
+    {
+      "chapter": "10-skills.md",
+      "url": "https://arxiv.org/abs/2604.01407"
+    },
+    {
+      "chapter": "12-enterprise-fde.md",
+      "url": "https://www.iso.org/standard/81230.html"
+    },
+    {
+      "chapter": "13-commerce-supply-chain.md",
+      "url": "https://github.com/sierra-research/tau-bench"
+    },
+    {
+      "chapter": "13-commerce-supply-chain.md",
+      "url": "https://retailbench.github.io/"
+    },
+    {
+      "chapter": "13-commerce-supply-chain.md",
+      "url": "https://arxiv.org/abs/2602.05395"
+    },
+    {
+      "chapter": "14-hardware-rnd.md",
+      "url": "https://www.nasa.gov/reference/systems-engineering-handbook/"
+    },
+    {
+      "chapter": "14-hardware-rnd.md",
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+    },
+    {
+      "chapter": "14-hardware-rnd.md",
+      "url": "https://phmsociety.org/competition/"
+    }
+  ],
+  "duplicate_source_titles": {
+    "τ-bench": [
+      "https://mlanthology.org/iclr/2025/yao2025iclr-bench/",
+      "https://arxiv.org/abs/2406.12045"
+    ],
+    "theagentcompany": [
+      "https://proceedings.neurips.cc/paper_files/paper/2025/hash/0d744742f6fac4d1134c019b7cef3c8a-Abstract-Datasets_and_Benchmarks_Track.html",
+      "https://arxiv.org/abs/2412.14161"
+    ],
+    "skillsbench": [
+      "https://arxiv.org/abs/2602.12670",
+      "https://www.skillsbench.ai/skillsbench.pdf"
+    ]
+  }
+}

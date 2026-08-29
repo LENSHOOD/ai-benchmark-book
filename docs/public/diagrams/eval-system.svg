@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" role="img" aria-labelledby="title desc">
+  <title id="title">被测系统与观测协议分离图</title>
+  <desc id="desc">模型、Harness、Skill 与工具环境访问组成被测系统；任务、预算、协议和 Grader 组成观测协议；二者共同产生观测，再支持有限的能力推断。</desc>
+  <defs><style>text{font-family:system-ui,-apple-system,"Noto Sans SC",sans-serif;fill:#173f52}.h{font-size:22px;font-weight:700}.b{font-size:16px}.box{rx:14;stroke:#2a6576;stroke-width:2}.arrow{stroke:#2a6576;stroke-width:3;marker-end:url(#m)}</style><marker id="m" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2a6576"/></marker></defs>
+  <rect class="box" x="30" y="55" width="310" height="170" fill="#e8f3f5"/><text class="h" x="185" y="91" text-anchor="middle">被测系统 SUT</text><text class="b" x="185" y="127" text-anchor="middle">Model × Harness × Skill</text><text class="b" x="185" y="156" text-anchor="middle">× Tool / Environment access</text><text class="b" x="185" y="194" text-anchor="middle">系统真正能看见和改变什么</text>
+  <rect class="box" x="375" y="55" width="250" height="170" fill="#fff3d9"/><text class="h" x="500" y="91" text-anchor="middle">观测协议</text><text class="b" x="500" y="127" text-anchor="middle">Task × Budget × Protocol</text><text class="b" x="500" y="156" text-anchor="middle">× Grader × Policy</text><text class="b" x="500" y="194" text-anchor="middle">尺子怎样制造观测</text>
+  <line class="arrow" x1="340" y1="140" x2="370" y2="140"/>
+  <rect class="box" x="660" y="55" width="270" height="170" fill="#eaf4e4"/><text class="h" x="795" y="91" text-anchor="middle">观测与推断</text><text class="b" x="795" y="127" text-anchor="middle">逐任务结果、trace、状态</text><text class="b" x="795" y="156" text-anchor="middle">区间、失败分类与边界</text><text class="b" x="795" y="194" text-anchor="middle">支持有限决策，不等于能力本体</text>
+  <line class="arrow" x1="625" y1="140" x2="655" y2="140"/>
+</svg>

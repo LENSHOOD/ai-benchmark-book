@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 290" role="img" aria-labelledby="title desc">
+  <title id="title">企业 AI 的四层证据</title>
+  <desc id="desc">公共诊断、共享合成孪生、企业私有资格与生产复证逐层接近真实价值，也逐层增加成本、隐私与动态性。</desc>
+  <defs><style>text{font-family:system-ui,-apple-system,"Noto Sans SC",sans-serif;fill:#173f52}.h{font-size:18px;font-weight:700}.s{font-size:14px}.box{rx:14;stroke:#2a6576;stroke-width:2}</style></defs>
+  <rect class="box" x="30" y="95" width="205" height="105" fill="#e8f3f5"/><text class="h" x="132" y="130" text-anchor="middle">公共诊断</text><text class="s" x="132" y="160" text-anchor="middle">可比、便宜、离部署较远</text>
+  <rect class="box" x="260" y="75" width="205" height="145" fill="#fff3d9"/><text class="h" x="362" y="120" text-anchor="middle">共享合成孪生</text><text class="s" x="362" y="150" text-anchor="middle">状态与风险可执行</text><text class="s" x="362" y="177" text-anchor="middle">但业务仍是合成</text>
+  <rect class="box" x="490" y="55" width="205" height="185" fill="#eaf4e4"/><text class="h" x="592" y="110" text-anchor="middle">企业私有资格</text><text class="s" x="592" y="140" text-anchor="middle">真实流程、政策、权限</text><text class="s" x="592" y="167" text-anchor="middle">支持有限授权</text><text class="s" x="592" y="194" text-anchor="middle">保密且维护昂贵</text>
+  <rect class="box" x="720" y="35" width="210" height="225" fill="#f4e9f6"/><text class="h" x="825" y="100" text-anchor="middle">生产复证</text><text class="s" x="825" y="133" text-anchor="middle">真实分布与人机流程</text><text class="s" x="825" y="160" text-anchor="middle">延迟标签与共同故障</text><text class="s" x="825" y="187" text-anchor="middle">触发回退和新回归</text><text class="s" x="825" y="225" text-anchor="middle">更接近价值，也更动态</text>
+  <text x="30" y="278" font-size="14">从左到右：部署相似度、隐私、成本与治理要求上升 →</text>
+</svg>

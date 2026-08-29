@@ -1,0 +1,26 @@
+{
+  "name": "ai-benchmark-book",
+  "private": true,
+  "type": "module",
+  "version": "0.3.2",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "check": "python3 scripts/check_book.py",
+    "check:sources": "python3 scripts/check_sources.py",
+    "check:baseline": "python3 scripts/source_manifest.py --check",
+    "check:rendered": "python3 scripts/check_rendered.py",
+    "test:examples": "python3 -m unittest discover -s examples -p 'test_*.py' -v",
+    "test:gates": "python3 -m unittest discover -s scripts -p 'test_*.py' -v",
+    "test": "npm run check && npm run check:sources && npm run check:baseline && npm run test:examples && npm run test:gates && npm run docs:build && npm run check:rendered"
+  },
+  "devDependencies": {
+    "markdown-it-mathjax3": "^4.3.2",
+    "vitepress": "1.6.4",
+    "vue": "3.5.41"
+  },
+  "overrides": {
+    "@xmldom/xmldom": "0.9.12"
+  }
+}

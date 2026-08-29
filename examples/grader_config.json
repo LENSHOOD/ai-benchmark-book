@@ -1,0 +1,10 @@
+{
+  "version": "state-grader@2.0.0",
+  "diagnostic_weights": {
+    "target_state": 0.55,
+    "evidence": 0.25,
+    "escalation": 0.20
+  },
+  "strict_success": "target_state AND required_evidence AND correct_escalation AND NOT veto AND NOT insufficient_evidence",
+  "rationale": "Weights are diagnostic only. Release decisions use strict success and veto; teams must replace these teaching weights with a documented business rationale."
+}

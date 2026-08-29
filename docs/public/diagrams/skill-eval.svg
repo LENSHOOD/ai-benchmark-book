@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 330" role="img" aria-labelledby="title desc">
+  <title id="title">Skill 七段行为链与三种实验条件</title>
+  <desc id="desc">Skill 从发现、选择、加载、理解、执行、验证到协同。Oracle 条件隔离内容执行，Retrieval 条件增加发现选择，Open 条件增加组合协同。</desc>
+  <defs><style>text{font-family:system-ui,-apple-system,"Noto Sans SC",sans-serif;fill:#173f52}.n{font-size:16px;font-weight:650}.s{font-size:15px}.box{rx:12;stroke:#2a6576;stroke-width:2}.line{stroke:#2a6576;stroke-width:3}</style></defs>
+  <text x="30" y="38" font-size="22" font-weight="700">行为链</text>
+  <g transform="translate(30,60)"><rect class="box" width="105" height="54" fill="#e8f3f5"/><text class="n" x="52" y="33" text-anchor="middle">发现</text></g><line class="line" x1="135" y1="87" x2="155" y2="87"/>
+  <g transform="translate(155,60)"><rect class="box" width="105" height="54" fill="#e8f3f5"/><text class="n" x="52" y="33" text-anchor="middle">选择</text></g><line class="line" x1="260" y1="87" x2="280" y2="87"/>
+  <g transform="translate(280,60)"><rect class="box" width="105" height="54" fill="#fff3d9"/><text class="n" x="52" y="33" text-anchor="middle">加载</text></g><line class="line" x1="385" y1="87" x2="405" y2="87"/>
+  <g transform="translate(405,60)"><rect class="box" width="105" height="54" fill="#fff3d9"/><text class="n" x="52" y="33" text-anchor="middle">理解</text></g><line class="line" x1="510" y1="87" x2="530" y2="87"/>
+  <g transform="translate(530,60)"><rect class="box" width="105" height="54" fill="#eaf4e4"/><text class="n" x="52" y="33" text-anchor="middle">执行</text></g><line class="line" x1="635" y1="87" x2="655" y2="87"/>
+  <g transform="translate(655,60)"><rect class="box" width="105" height="54" fill="#eaf4e4"/><text class="n" x="52" y="33" text-anchor="middle">验证</text></g><line class="line" x1="760" y1="87" x2="780" y2="87"/>
+  <g transform="translate(780,60)"><rect class="box" width="105" height="54" fill="#f4e9f6"/><text class="n" x="52" y="33" text-anchor="middle">协同</text></g>
+  <text x="30" y="168" font-size="22" font-weight="700">实验条件</text>
+  <rect class="box" x="30" y="188" width="270" height="100" fill="#fff3d9"/><text class="n" x="165" y="220" text-anchor="middle">Oracle</text><text class="s" x="165" y="250" text-anchor="middle">直接给正确 Skill</text><text class="s" x="165" y="274" text-anchor="middle">隔离加载—验证</text>
+  <rect class="box" x="345" y="188" width="270" height="100" fill="#e8f3f5"/><text class="n" x="480" y="220" text-anchor="middle">Retrieval</text><text class="s" x="480" y="250" text-anchor="middle">从目录发现与选择</text><text class="s" x="480" y="274" text-anchor="middle">增加发现—选择</text>
+  <rect class="box" x="660" y="188" width="270" height="100" fill="#f4e9f6"/><text class="n" x="795" y="220" text-anchor="middle">Open</text><text class="s" x="795" y="250" text-anchor="middle">允许多 Skill 组合</text><text class="s" x="795" y="274" text-anchor="middle">增加冲突与协同</text>
+</svg>

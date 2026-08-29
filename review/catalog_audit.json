@@ -1,0 +1,468 @@
+{
+  "row_count": 70,
+  "fields": [
+    "name",
+    "year",
+    "layer",
+    "primary_construct",
+    "task_form",
+    "environment",
+    "grader",
+    "metrics",
+    "openness",
+    "maturity",
+    "key_limit",
+    "source"
+  ],
+  "unique_values": {
+    "maturity": [
+      "established",
+      "evolving",
+      "foundational"
+    ],
+    "openness": [
+      "220-task public gold",
+      "open",
+      "open framework and logs",
+      "open source",
+      "open with hosted components",
+      "partly hidden",
+      "partly open",
+      "partly public",
+      "public",
+      "public data hidden test",
+      "public dataset and challenge",
+      "public questions",
+      "public rolling",
+      "public tasks with hidden judgments",
+      "public/private split"
+    ]
+  },
+  "lifecycle_fields_present": [],
+  "url_summary": {
+    "access_blocked": 5,
+    "reachable": 65
+  },
+  "url_health": [
+    {
+      "url": "https://agi.safe.ai/",
+      "status": 200,
+      "final_url": "https://agi.safe.ai/",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://aider.chat/docs/leaderboards/",
+      "status": 200,
+      "final_url": "https://aider.chat/docs/leaderboards/",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2009.03300",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2009.03300",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2103.03874",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2103.03874",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2211.09110",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2211.09110",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2304.08244",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2304.08244",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2305.08322",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2305.08322",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2306.09212",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2306.09212",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2307.16789",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2307.16789",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2308.03688",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2308.03688",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2308.14508",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2308.14508",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2310.03302",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2310.03302",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2310.06770",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2310.06770",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2311.12022",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2311.12022",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2311.12983",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2311.12983",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2401.13649",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2401.13649",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2402.04249",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2402.04249",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2402.10260",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2402.10260",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2403.07718",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2403.07718",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2403.07974",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2403.07974",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2404.07972",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2404.07972",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2406.12045",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2406.12045",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2406.19314",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2406.19314",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2407.18901",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2407.18901",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2408.04682",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2408.04682",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2410.07095",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2410.07095",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2411.02305",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2411.02305",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2411.04872",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2411.04872",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2412.14161",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2412.14161",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2412.14470",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2412.14470",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2504.18575",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2504.18575",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2505.11831",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2505.11831",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2505.18878",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2505.18878",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2507.05639",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2507.05639",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2510.11977",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2510.11977",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2601.11868",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2601.11868",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2602.07342",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2602.07342",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2602.12670",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2602.12670",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2603.15401",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2603.15401",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2604.01532",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2604.01532",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2604.04323",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2604.04323",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2606.15862",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2606.15862",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2607.28956",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2607.28956",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://erpbench.ai/",
+      "status": 200,
+      "final_url": "https://erpbench.ai/",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://github.com/CLUEbenchmark/SuperCLUE",
+      "status": 200,
+      "final_url": "https://github.com/CLUEbenchmark/SuperCLUE",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://github.com/MMMU-Benchmark/MMMU",
+      "status": 200,
+      "final_url": "https://github.com/MMMU-Benchmark/MMMU",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://github.com/NVIDIA/RULER",
+      "status": 200,
+      "final_url": "https://github.com/NVIDIA/RULER",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://github.com/ServiceNow/BrowserGym",
+      "status": 200,
+      "final_url": "https://github.com/ServiceNow/BrowserGym",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://github.com/agentscope-ai/PawBench",
+      "status": 200,
+      "final_url": "https://github.com/agentscope-ai/PawBench",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://github.com/google/BIG-bench",
+      "status": 200,
+      "final_url": "https://github.com/google/BIG-bench",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://github.com/lupantech/MathVista",
+      "status": 200,
+      "final_url": "https://github.com/lupantech/MathVista",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://github.com/open-compass/opencompass",
+      "status": 200,
+      "final_url": "https://github.com/open-compass/opencompass",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://github.com/openai/grade-school-math",
+      "status": 200,
+      "final_url": "https://github.com/openai/grade-school-math",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://github.com/openai/human-eval",
+      "status": 200,
+      "final_url": "https://github.com/openai/human-eval",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://github.com/web-arena-x/webarena",
+      "status": 200,
+      "final_url": "https://github.com/web-arena-x/webarena",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://gluebenchmark.com/",
+      "status": 200,
+      "final_url": "https://gluebenchmark.com/",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://gorilla.cs.berkeley.edu/leaderboard",
+      "status": 200,
+      "final_url": "https://gorilla.cs.berkeley.edu/leaderboard",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://openai.com/index/gdpval/",
+      "status": 403,
+      "final_url": "https://openai.com/index/gdpval/",
+      "outcome": "access_blocked"
+    },
+    {
+      "url": "https://openai.com/index/introducing-swe-bench-verified/",
+      "status": 403,
+      "final_url": "https://openai.com/index/introducing-swe-bench-verified/",
+      "outcome": "access_blocked"
+    },
+    {
+      "url": "https://openai.com/index/paperbench/",
+      "status": 403,
+      "final_url": "https://openai.com/index/paperbench/",
+      "outcome": "access_blocked"
+    },
+    {
+      "url": "https://openai.com/index/swe-lancer/",
+      "status": 403,
+      "final_url": "https://openai.com/index/swe-lancer/",
+      "outcome": "access_blocked"
+    },
+    {
+      "url": "https://openai.com/index/truthfulqa/",
+      "status": 403,
+      "final_url": "https://openai.com/index/truthfulqa/",
+      "outcome": "access_blocked"
+    },
+    {
+      "url": "https://proceedings.mlr.press/v267/wijk25a.html",
+      "status": 200,
+      "final_url": "https://proceedings.mlr.press/v267/wijk25a.html",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/877b40688e330a0e2a3fc24084208dfa-Abstract-Datasets_and_Benchmarks_Track.html",
+      "status": 200,
+      "final_url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/877b40688e330a0e2a3fc24084208dfa-Abstract-Datasets_and_Benchmarks_Track.html",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://proceedings.nips.cc/paper_files/paper/2024/hash/97091a5177d8dc64b1da8bf3e1f6fb54-Abstract-Datasets_and_Benchmarks_Track.html",
+      "status": 200,
+      "final_url": "https://proceedings.nips.cc/paper_files/paper/2024/hash/97091a5177d8dc64b1da8bf3e1f6fb54-Abstract-Datasets_and_Benchmarks_Track.html",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://super.gluebenchmark.com/",
+      "status": 200,
+      "final_url": "https://super.gluebenchmark.com/",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://trec.nist.gov/",
+      "status": 200,
+      "final_url": "https://trec.nist.gov/",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://www.image-net.org/",
+      "status": 200,
+      "final_url": "https://www.image-net.org/",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://www.mercor.com/apex/apex-agents-leaderboard/",
+      "status": 200,
+      "final_url": "https://www.mercor.com/apex/apex-agents-leaderboard/",
+      "outcome": "reachable"
+    },
+    {
+      "url": "https://zapier.com/benchmarks",
+      "status": 200,
+      "final_url": "https://zapier.com/benchmarks",
+      "outcome": "reachable"
+    }
+  ]
+}
