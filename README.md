@@ -1,8 +1,8 @@
 # AI Benchmark 与评估：从排行榜到数字员工上岗
 
-一套面向 AI 产品负责人、Agent/Skill 工程师、FDE 与技术架构师的中文开放方法手册与实践课程（v0.3 beta）。目标不是教读者背排行榜，而是帮助读者从零设计、实现、验证并持续运营自己的 benchmark。
+一本写给 AI 产品负责人、Agent/Skill 工程师、FDE 和技术架构师的中文实践手册（v0.4 beta）。它不教你背排行榜，而是带你从零做出一套能运行、能解释、还能持续维护的 benchmark。
 
-当前版本可用于内部课程和公开 beta：140 条来源均已登记，其中 51 条 arXiv 记录已通过一手 API 批量核验，账本共 53 条为 `verified_primary`；公平、数据劳动和在线人因等横切主题尚未形成完整专章。因此它不是“所有来源均完成学术审定的权威教材”。
+当前版本可以用于内部课程和公开试读。书中登记了 140 条来源，其中 51 条 arXiv 记录已通过一手 API 核验，共 53 条为 `verified_primary`。公平、数据劳动和线上人机协作还没有独立成章，所以这不是一本“所有来源都已完成学术审定”的权威教材。
 
 ## 本地阅读
 
@@ -19,7 +19,7 @@ npm run docs:dev
 npm test
 ```
 
-`release/v0.3.2-source.sha256` 是当前 beta 的可核验源文件基线；`docs/.vitepress/dist/` 由构建生成并被忽略，不属于发布源文件。只有在审阅变更后才运行 `python3 scripts/source_manifest.py --write` 更新基线。旧版本清单保留在 `release/` 中，作为对应发布时点的历史完整性记录。
+`release/v0.4.0-source.sha256` 是当前 beta 的源文件校验清单。`docs/.vitepress/dist/` 是构建产物，不属于发布源文件。审阅完变更后，运行 `python3 scripts/source_manifest.py --write` 更新当前清单；旧版本清单继续保留。
 
 ## 目录
 

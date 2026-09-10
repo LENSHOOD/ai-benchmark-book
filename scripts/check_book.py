@@ -209,6 +209,17 @@ framework_inlinks = sum("/appendix/framework-map" in path.read_text() for path i
 if framework_inlinks < 10:
     errors.append(f"framework map is insufficiently connected to host chapters: {framework_inlinks}/10")
 
+legacy_heading_anchors = {
+    "09-harness.md": '<a id="harness-被忽略的系统变量"></a>',
+    "10-skills.md": '<a id="skill-plugin-作为可验证干预"></a>',
+    "11-experiments.md": '<a id="实验设计、统计与因果归因"></a>',
+    "15-governance.md": '<a id="上岗、授权、复证与-benchmark-治理"></a>',
+    "16-future.md": '<a id="评测评测本身-以及未来"></a>',
+}
+for filename, anchor in legacy_heading_anchors.items():
+    if anchor not in (DOCS / "book" / filename).read_text():
+        errors.append(f"legacy heading anchor missing from {filename}: {anchor}")
+
 empirical_anchors = {
     "08-agents.md": "https://arxiv.org/abs/2601.11868",
     "09-harness.md": "https://arxiv.org/abs/2602.12670",
@@ -220,9 +231,9 @@ for filename, url in empirical_anchors.items():
         errors.append(f"verified empirical anchor missing from {filename}: {url}")
 
 home_text = (DOCS / "index.md").read_text()
-if "v0.3 beta" not in home_text:
+if "v0.4 beta" not in home_text:
     errors.append("home page must disclose the current beta maturity")
-if f"共 {verified_primary_count} 条标记为 `verified_primary`" not in home_text:
+if not re.search(rf"共(?:有)? {verified_primary_count} 条标记为 `verified_primary`", home_text):
     errors.append("home page verified-source count does not match the source ledger")
 
 reference_count = len(re.findall(r"^\*\*\[\d+\]\*\*", (DOCS / "appendix" / "references.md").read_text(), re.MULTILINE))

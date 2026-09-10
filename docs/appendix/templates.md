@@ -18,7 +18,7 @@ import { withBase } from 'vitepress'
 - <a :href="withBase('/downloads/templates/rubric_and_judge_card.md')" download>Rubric & Judge Card</a>
 - <a :href="withBase('/downloads/templates/task_spec.yaml')" download>Task Spec YAML</a>
 
-仓库 `templates/` 提供七项可复制资产。模板不是文档交付清单，而是迫使团队在运行前做出关键决定。
+仓库 `templates/` 提供七份可以直接改的模板。它们不是为了凑文档，而是逼团队在开跑之前把关键问题说清楚。
 
 | 模板 | 使用时机 | 最重要的问题 |
 |---|---|---|
@@ -32,11 +32,11 @@ import { withBase } from 'vitepress'
 
 ## 推荐顺序
 
-先写 Charter，再做流程与任务宇宙。不要先填 Task Spec，因为手头案例会反过来定义构念。环境和 Harness 初步确定后写 Harness Card；grader 必须与 Task Spec 同时测试；Release Gate 在看资格结果前签字。
+先写 Charter，明确要支持什么决定，再盘点流程和任务范围。不要一上来就填 Task Spec，否则手边几个案例会反过来限制你想测的能力。环境和 Harness 初步确定后再写 Harness Card。任务和评分器要一起测试，发布门禁要在看资格结果之前签字。
 
 ## 模板完成的判断
 
-两位未参与编写的领域专家能否独立判断任务通过？工程师能否依据文档重置环境、运行候选和解释失败？决策者能否知道某分数不足时应该拒绝、补证还是缩权？若不能，模板仍只是文字。
+找两位没参与编写的领域专家。他们能否独立判断任务是否通过？工程师能否只看文档就重置环境、运行候选并解释失败？决策者看到证据不足时，是否知道应该拒绝、补证还是缩权？如果不能，这些模板还只是文字。
 
 ## 下载
 

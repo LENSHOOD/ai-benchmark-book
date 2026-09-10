@@ -5,7 +5,7 @@ const base = process.env.VITEPRESS_BASE || '/'
 export default defineConfig({
   lang: 'zh-CN',
   title: 'AI Benchmark 与评估',
-  description: '从历史、测量原理和系统框架，到企业数字员工的可运行评测实践',
+  description: '从看懂排行榜，到为企业数字员工设计一套真正能用的评测',
   base,
   cleanUrls: true,
   lastUpdated: true,
@@ -79,9 +79,9 @@ export default defineConfig({
         items: [
           { text: '07 基础模型评测的正确读法', link: '/book/07-models' },
           { text: '08 Agent 与环境状态评测', link: '/book/08-agents' },
-          { text: '09 Harness：被忽略的系统变量', link: '/book/09-harness' },
-          { text: '10 Skill/Plugin：可验证干预', link: '/book/10-skills' },
-          { text: '11 实验、统计与因果归因', link: '/book/11-experiments' }
+          { text: '09 Harness 怎样改变模型表现', link: '/book/09-harness' },
+          { text: '10 怎样证明 Skill 真有用', link: '/book/10-skills' },
+          { text: '11 别把看起来更好当证据', link: '/book/11-experiments' }
         ]
       },
       {
@@ -95,8 +95,8 @@ export default defineConfig({
       {
         text: '第五部分 · 治理与未来',
         items: [
-          { text: '15 上岗、授权、复证与治理', link: '/book/15-governance' },
-          { text: '16 评测评测本身，以及未来', link: '/book/16-future' }
+          { text: '15 数字员工怎样上岗和收权', link: '/book/15-governance' },
+          { text: '16 谁来检查评测', link: '/book/16-future' }
         ]
       },
       {
@@ -115,7 +115,7 @@ export default defineConfig({
     ],
     footer: {
       message: '正文 CC BY-NC-SA 4.0 · 代码 Apache-2.0',
-      copyright: '证据复核至 2026-08-28 · v0.3.2 beta'
+      copyright: '证据复核至 2026-08-28 · v0.4.0 beta'
     }
   }
 })
