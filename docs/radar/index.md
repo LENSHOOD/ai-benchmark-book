@@ -9,7 +9,7 @@ import { withBase } from 'vitepress'
 
 # Benchmark Radar
 
-Radar 是动态内容，不是排行榜。它帮助读者回答三个问题：某个项目测什么、适合支持什么决策、目前有哪些已知边界。
+Radar 不是又一张排行榜。它只帮你快速回答三个问题：这个项目测什么，适合拿来做什么决定，已知短板是什么。
 
 | 层级 | 代表项目 | 主要用途 | 典型限制 |
 |---|---|---|---|
@@ -23,7 +23,9 @@ Radar 是动态内容，不是排行榜。它帮助读者回答三个问题：�
 | 工作价值 | GDPval、SWE-Lancer | 真实工作产物和经济任务 | 专家基线与完整岗位外推有限 |
 | 安全 | AgentDojo、WASP、ToolSandbox | 提示注入、工具安全与隔离 | 攻击覆盖与现实威胁持续变化 |
 
-<a :href="withBase('/downloads/benchmark_catalog.csv')" download>下载完整 70 项结构化目录</a>。当前 CSV 的 `maturity` 是本书在 2026-08-27 快照中使用的粗粒度编辑标签，取值为 `foundational`、`established` 与 `evolving`，不表示项目声誉，也不等同于项目官方状态。`active / audited / saturated / revised / retired` 是下一版治理流程拟采用的生命周期字段；在逐条核验并补齐版本和复核日期前，本版不宣称已经实现该机制。用于审计本书来源的 <a :href="withBase('/downloads/sources.jsonl')" download>JSONL 来源账本</a> 也随站点发布，其中 `unverified` 必须按“元数据尚未逐条核验”理解，而不是已验证引文。
+<a :href="withBase('/downloads/benchmark_catalog.csv')" download>下载完整 70 项结构化目录</a>。CSV 中的 `maturity` 只是本书在 2026-08-27 快照里使用的粗略编辑标签，取值为 `foundational`、`established` 和 `evolving`。它不代表项目口碑，也不是项目官方状态。
+
+`active / audited / saturated / revised / retired` 是下一版准备加入的生命周期字段。本版还没有逐项补齐版本和复核日期，所以不声称已经实现这套机制。站点也发布了 <a :href="withBase('/downloads/sources.jsonl')" download>JSONL 来源账本</a>。其中 `unverified` 的意思是“元数据还没逐条核验”，不是“已经验证”。
 
 > 移动端可横向滑动下表；结构化 CSV 更适合筛选和二次分析。
 
