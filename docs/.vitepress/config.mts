@@ -54,7 +54,9 @@ export default defineConfig({
         items: [
           { text: '阅读指南', link: '/start/' },
           { text: '全书地图', link: '/start/map' },
-          { text: '如何使用案例与代码', link: '/labs/' }
+          { text: '如何使用案例与代码', link: '/labs/' },
+          { text: '双案例工件走读', link: '/labs/worked-artifacts' },
+          { text: '怎样接入模型动作', link: '/labs/model-adapter' }
         ]
       },
       {
@@ -115,7 +117,7 @@ export default defineConfig({
     ],
     footer: {
       message: '正文 CC BY-NC-SA 4.0 · 代码 Apache-2.0',
-      copyright: '证据复核至 2026-08-28 · v0.4.0 beta'
+      copyright: '增量证据复核至 2026-09-19 · v0.5.0 beta'
     }
   }
 })

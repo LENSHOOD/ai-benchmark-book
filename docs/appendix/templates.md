@@ -40,4 +40,4 @@ import { withBase } from 'vitepress'
 
 ## 下载
 
-VitePress 会将仓库源文件一同发布在 GitHub。也可以直接复制 `templates/` 目录到自己的项目；其中企业字段只是示例，可在不改变核心证据链的前提下扩展。
+本页下载按钮读取站点专门提供的模板副本；VitePress 不会自动把整个 Git 仓库发布到网站。公开源文件见 [GitHub 的 templates 目录](https://github.com/LENSHOOD/ai-benchmark-book/tree/main/templates)。也可以从克隆的仓库复制该目录到自己的项目；企业字段只是示例，可按自己的业务修改。

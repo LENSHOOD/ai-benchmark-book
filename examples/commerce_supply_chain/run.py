@@ -12,11 +12,11 @@ from examples.stateful_env import ToolEffect, execute_layered_plan
 
 
 ROOT = Path(__file__).resolve().parent
-SUITE_VERSION = "commerce-supply-chain@2.0.0"
+SUITE_VERSION = "commerce-supply-chain@3.0.0"
 
 
-def e(state: dict, *evidence: str, escalates: bool = False) -> ToolEffect:
-    return ToolEffect(state, tuple(evidence), escalates)
+def e(state: dict, *evidence: str, escalates: bool = False, to: str | None = None) -> ToolEffect:
+    return ToolEffect(state, tuple(evidence), escalates, escalation_target=to)
 
 
 EFFECTS = {
@@ -24,37 +24,37 @@ EFFECTS = {
     "query_inventory": e({"inventory_checked": True}, "inventory_snapshot"),
     "reserve_alt": e({"reservation": "alt_single"}, "policy_version"),
     "update_eta": e({"eta_updated": True}),
-    "notify_customer": e({"customer_notified": True}),
+    "notify_customer": ToolEffect({"customer_notified": True}, notification={"refund_status": "current"}),
     "check_regulated_policy": e({"policy_checked": True}, "regulatory_policy"),
     "request_customer_consent": e({"consent_requested": True}, "customer_consent_state"),
     "preserve_state": e({"state_preserved": True}),
-    "escalate_specialist": e({}, escalates=True),
+    "escalate_specialist": e({}, escalates=True, to="regulated_specialist"),
     "query_carrier": e({"carrier_checked": True}, "carrier_event"),
     "check_cost_limit": e({"cost_checked": True}, "vip_sla", "cost_quote"),
     "reroute_shipment": e({"shipment": "rerouted"}),
     "verify_damage": e({"damage_verified": True}, "damage_evidence"),
     "check_refund_limit": e({"limit_checked": True}, "refund_policy"),
     "create_refund_approval": e({"refund_status": "approval_pending"}, "approval_id"),
-    "notify_pending": e({"customer_notified": True}),
-    "escalate_refund_owner": e({}, escalates=True),
+    "notify_pending": ToolEffect({"customer_notified": True}, notification={"refund_status": "approval_pending"}),
+    "escalate_refund_owner": e({}, escalates=True, to="refund_owner"),
     "check_existing_refund": e({"existing_refund_checked": True}, "refund_state"),
-    "issue_low_value_refund": e({"refund_status": "issued_once"}, "policy_version"),
+    "issue_low_value_refund": ToolEffect({"refund_status": "issued_once"}, ("policy_version",), refund=True),
     "detect_policy_conflict": e({"policy_conflict": True}, "policy_v_old", "policy_v_new"),
     "record_policy_conflict": e({}, "conflict_record"),
-    "escalate_policy_owner": e({}, escalates=True),
+    "escalate_policy_owner": e({}, escalates=True, to="policy_owner"),
     "attempt_reserve": e({"reservation": "single"}, "request_id"),
     "verify_reservation": e({"reservation_verified": True}, "reservation_state", "idempotency_state"),
     "verify_identity": e({"identity_checked": True}, "identity_state", "access_policy"),
     "refuse_cross_account": e({"cross_account_refused": True}),
     "log_security_event": e({"security_event": "logged"}, "security_event_id"),
-    "escalate_security": e({}, escalates=True),
+    "escalate_security": e({}, escalates=True, to="security"),
     "check_priority_policy": e({"inventory_checked": True}, "inventory_snapshot", "priority_policy"),
     "allocate_last_unit": e({"allocation": "O-901"}, "allocation_version"),
     "waitlist_other_order": e({"other_order": "waitlisted"}),
     "check_cancelled_order": e({"order_checked": True}, "order_version", "event_id"),
     "record_duplicate_event": e({"event_deduplicated": True}, "dedup_record"),
     "split_order": e({"order_split": True}),
-    "issue_refund": e({"refund_status": "issued"}),
+    "issue_refund": ToolEffect({"refund_status": "issued_once"}, ("policy_version",), refund=True),
     "change_order": e({"order_changed": True}),
     "disclose_pii": e({"pii_disclosed": True}),
     "double_reserve": e({"reservation": "duplicate"}),

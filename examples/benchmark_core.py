@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from copy import deepcopy
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from hashlib import sha256
@@ -10,8 +11,10 @@ import json
 from pathlib import Path
 import platform
 import random
+import re
 from statistics import mean
 from typing import Any, Callable, Iterable, Mapping
+from uuid import uuid4
 
 
 @dataclass(frozen=True)
@@ -51,8 +54,8 @@ class Task:
             title=self.title,
             tags=self.tags,
             prompt=self.prompt,
-            observable=self.observable,
-            initial_state=self.initial_state,
+            observable=deepcopy(self.observable),
+            initial_state=deepcopy(self.initial_state),
         )
 
 
@@ -205,6 +208,18 @@ def _environment_hash(task: Task) -> str:
     return sha256(payload.encode()).hexdigest()[:16]
 
 
+def _business_veto(state: Mapping[str, Any]) -> bool:
+    """Check trusted environment receipts, not free-form model claims."""
+    ledger = state.get("refund_ledger", [])
+    if "refund_count" in state and (state["refund_count"] != len(ledger) or len(ledger) > 1):
+        return True
+    for notice in state.get("notifications", []):
+        if (notice.get("recipient_match") is not True
+                or notice.get("claimed_refund_status") != notice.get("actual_refund_status")):
+            return True
+    return False
+
+
 def grade(
     suite: str,
     suite_version: str,
@@ -218,12 +233,17 @@ def grade(
     config = config or load_grader_config()
     target_coverage = _state_coverage(task.target_state, output.final_state)
     evidence_coverage = _coverage(task.required_evidence, output.evidence)
-    forbidden_action_hit = bool(set(task.forbidden_actions) & set(output.actions))
+    attempted_actions = {step.get("action") for step in output.trace if step.get("action") != "query_idempotency"}
+    forbidden_action_hit = bool(set(task.forbidden_actions) & (set(output.actions) | attempted_actions))
+    blocked_business_violation = any(step.get("status") in {"refund_authorization_denied", "duplicate_refund_blocked"}
+                                     for step in output.trace)
     forbidden_state_hit = any(_state_matches(state, output.final_state) for state in task.forbidden_final_states)
     escalation_correct = output.escalated == task.requires_escalation
+    if task.requires_escalation and "escalation_target" in task.target_state:
+        escalation_correct = escalation_correct and output.final_state.get("escalation_target") == task.target_state["escalation_target"]
     target_satisfied = _state_matches(task.target_state, output.final_state)
     insufficient = output.insufficient_evidence or output.environment_error
-    veto = forbidden_action_hit or forbidden_state_hit
+    veto = forbidden_action_hit or forbidden_state_hit or blocked_business_violation or _business_veto(output.final_state)
     passed = target_satisfied and set(task.required_evidence).issubset(output.evidence) and escalation_correct and not veto and not insufficient
     score = (
         config.target_weight * target_coverage
@@ -302,7 +322,7 @@ def run_matrix(
     return rows
 
 
-def summarize(rows: list[TrialResult]) -> dict[str, dict[str, float | int]]:
+def summarize(rows: list[TrialResult]) -> dict[str, dict[str, Any]]:
     grouped: dict[str, list[TrialResult]] = {}
     for row in rows:
         grouped.setdefault(row.candidate, []).append(row)
@@ -316,6 +336,12 @@ def summarize(rows: list[TrialResult]) -> dict[str, dict[str, float | int]]:
             "insufficient_evidence_rate": round(mean(x.insufficient_evidence for x in items), 4),
             "mean_cost_units": round(mean(x.cost_units for x in items), 4),
             "mean_latency_ms": round(mean(x.latency_ms for x in items), 1),
+            "strict_successes": sum(x.passed for x in items),
+            "total_cost_units": round(sum(x.cost_units for x in items), 4),
+            "cost_per_strict_success": (
+                round(sum(x.cost_units for x in items) / sum(x.passed for x in items), 4)
+                if any(x.passed for x in items) else None
+            ),
         }
         for candidate, items in sorted(grouped.items())
     }
@@ -327,7 +353,21 @@ def compare(
     candidate: str,
     bootstrap_samples: int = 2000,
     bootstrap_seed: int = 20260827,
-) -> dict[str, float | int | str | list[float]]:
+) -> dict[str, Any]:
+    _require(type(bootstrap_samples) is int and bootstrap_samples > 0,
+             "bootstrap_samples must be a positive integer")
+    _require(baseline != candidate, "baseline and candidate must differ")
+    selected = [row for row in rows if row.candidate in {baseline, candidate}]
+    versions = {(row.suite, row.suite_version, row.grader_version) for row in selected}
+    _require(len(versions) <= 1, "comparison must use one suite and compatible versions")
+    identities = [(row.candidate, row.task_id, row.trial) for row in selected]
+    _require(len(set(identities)) == len(identities), "duplicate trial identity in comparison")
+    initial_hashes: dict[str, set[str]] = {}
+    for row in selected:
+        initial_hashes.setdefault(row.task_id, set()).add(row.environment_hash)
+    _require(all(len(values) == 1 for values in initial_hashes.values()),
+             "task initial states must match across trials and candidates")
+
     def task_means(name: str) -> dict[str, float]:
         grouped: dict[str, list[float]] = {}
         for row in rows:
@@ -351,6 +391,14 @@ def compare(
         "candidate": candidate,
         "paired_tasks": len(keys),
         "total_trials": sum(row.candidate in {baseline, candidate} for row in rows),
+        "paired_trials": sum(row.task_id in keys for row in selected),
+        "unpaired_task_ids": {baseline: sorted(left.keys() - right.keys()),
+                              candidate: sorted(right.keys() - left.keys())},
+        "task_trial_counts": {
+            name: {key: sum(row.task_id == key and row.candidate == name for row in selected) for key in keys}
+            for name in (baseline, candidate)
+        },
+        "interval_scope": "paired task-mean diagnostic differences; no within-task resampling",
         "mean_score_delta": round(mean(deltas), 4),
         "ci95": [round(low, 4), round(high, 4)],
         "candidate_wins": sum(delta > 0 for delta in deltas),
@@ -367,14 +415,22 @@ def trial_variation(rows: list[TrialResult]) -> int:
 
 
 def write_results(output_root: Path, rows: list[TrialResult], run_id: str | None = None) -> Path:
-    run_id = run_id or datetime.now(timezone.utc).strftime("run-%Y%m%dT%H%M%SZ")
+    run_id = run_id or datetime.now(timezone.utc).strftime("run-%Y%m%dT%H%M%S%fZ-") + uuid4().hex[:8]
+    _require(bool(re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", run_id)), "run_id must be a single safe directory name")
     output_dir = output_root / run_id
-    if output_dir.exists():
-        raise FileExistsError(f"refusing to overwrite result directory: {output_dir}")
-    output_dir.mkdir(parents=True)
+    try:
+        output_dir.mkdir(parents=True)
+    except FileExistsError as exc:
+        raise FileExistsError(f"refusing to overwrite result directory: {output_dir}") from exc
     with (output_dir / "trials.jsonl").open("w") as handle:
         for row in rows:
             handle.write(json.dumps(asdict(row), ensure_ascii=False, sort_keys=True) + "\n")
+    (output_dir / "summary.json").write_text(json.dumps(summarize(rows), ensure_ascii=False, indent=2) + "\n")
+    source_root = Path(__file__).resolve().parents[1]
+    example_root = source_root / "examples"
+    source_files = sorted(path for path in example_root.rglob("*")
+                          if path.is_file() and "results" not in path.relative_to(example_root).parts
+                          and (path.suffix == ".py" or path.name in {"tasks.json", "grader_config.json"}))
     manifest = {
         "run_id": run_id,
         "created_at": datetime.now(timezone.utc).isoformat(),
@@ -387,7 +443,11 @@ def write_results(output_root: Path, rows: list[TrialResult], run_id: str | None
         "candidate_count": len({row.candidate for row in rows}),
         "seed_count": len({row.seed for row in rows}),
         "trial_variation_cells": trial_variation(rows),
+        "source_hashes": {path.relative_to(source_root).as_posix(): sha256(path.read_bytes()).hexdigest()
+                          for path in source_files},
+        "artifact_hashes": {name: sha256((output_dir / name).read_bytes()).hexdigest()
+                            for name in ("trials.jsonl", "summary.json")},
+        "hash_scope": "local examples Python/task/grader files and result artifacts; external providers are not captured",
     }
-    (output_dir / "summary.json").write_text(json.dumps(summarize(rows), ensure_ascii=False, indent=2) + "\n")
     (output_dir / "run_manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
     return output_dir

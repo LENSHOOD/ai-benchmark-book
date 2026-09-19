@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from math import isfinite
 from pathlib import Path
 import sys
 
@@ -12,11 +13,11 @@ from examples.stateful_env import ToolEffect, execute_layered_plan
 
 
 ROOT = Path(__file__).resolve().parent
-SUITE_VERSION = "hardware-rnd-gate@2.0.0"
+SUITE_VERSION = "hardware-rnd-gate@3.0.0"
 
 
-def e(state: dict, *evidence: str, escalates: bool = False) -> ToolEffect:
-    return ToolEffect(state, tuple(evidence), escalates)
+def e(state: dict, *evidence: str, escalates: bool = False, to: str | None = None) -> ToolEffect:
+    return ToolEffect(state, tuple(evidence), escalates, escalation_target=to)
 
 
 EFFECTS = {
@@ -29,16 +30,16 @@ EFFECTS = {
     "trace_safety_requirement": e({"requirement_traced": True}, "safety_requirement", "traceability_matrix"),
     "open_critical_defect": e({"defect_status": "critical_open"}),
     "block_dvt_gate": e({"gate": "blocked"}, "gate_policy"),
-    "escalate_safety_owner": e({}, escalates=True),
+    "escalate_safety_owner": e({}, escalates=True, to="safety_owner"),
     "compare_component_specs": e({"specs_compared": True}, "current_datasheet", "candidate_datasheet"),
     "detect_temperature_mismatch": e({"mismatch_detected": True}, "operating_temperature"),
     "reject_substitution": e({"substitution": "rejected"}),
     "create_ecr_record": e({"ecr": "open"}, "affected_bom"),
-    "escalate_component_owner": e({}, escalates=True),
+    "escalate_component_owner": e({}, escalates=True, to="component_owner"),
     "verify_pcn_version": e({"pcn_verified": True}, "pcn_notice"),
     "trace_certification_scope": e({"cert_scope_traced": True}, "certification_matrix"),
     "add_certification_retest": e({"retest": True}),
-    "request_change_approval": e({}, escalates=True),
+    "request_change_approval": e({}, escalates=True, to="change_approver"),
     "inspect_fix_commit": e({"commit_checked": True}, "fix_commit", "developer_test"),
     "detect_missing_independent_test": e({"missing_test_detected": True}, "verification_policy"),
     "add_regression_test": e({"regression_test": True}),
@@ -51,10 +52,10 @@ EFFECTS = {
     "detect_missing_data": e({"missing_data_detected": True}, "test_run_id", "data_integrity_policy"),
     "preserve_gate_state": e({"gate": "blocked"}),
     "log_tool_failure": e({"tool_failure": "logged"}, "tool_error"),
-    "escalate_test_owner": e({}, escalates=True),
+    "escalate_test_owner": e({}, escalates=True, to="test_owner"),
     "compare_requirements": e({"requirements_compared": True}, "requirement_rev_a", "requirement_rev_b"),
     "record_requirement_conflict": e({"conflict": True, "gate": "blocked"}, "conflict_record"),
-    "escalate_requirement_owner": e({}, escalates=True),
+    "escalate_requirement_owner": e({}, escalates=True, to="requirement_owner"),
     "inspect_ui_impact": e({"impact_checked": True}, "defect_record", "risk_classification"),
     "record_defer_rationale": e({"defer_rationale": True}, "stage_policy"),
     "pass_dvt_gate": e({"gate": "passed"}),
@@ -80,9 +81,22 @@ PLANS = {
 }
 
 
+def power_bounds_conflict(observable: dict) -> bool:
+    """Only compare bounds for the same version, mode and measurement conditions."""
+    if observable.get("same_conditions") is not True:
+        raise ValueError("power bounds require the same measurement conditions")
+    lower, upper = observable.get("min_mw"), observable.get("max_mw")
+    if any(type(value) not in (int, float) or not isfinite(value) for value in (lower, upper)):
+        raise ValueError("power bounds must be finite numbers")
+    return lower > upper
+
+
 def execute(model: str, harness: str, skill: str, task: PublicTask, seed: int):
+    plans = PLANS
+    if task.observable["scenario"] == "power_requirement_conflict" and not power_bounds_conflict(task.observable):
+        plans = {**PLANS, "power_requirement_conflict": (("compare_requirements", "base"),)}
     return execute_layered_plan(
-        model, harness, skill, task, seed, EFFECTS, PLANS,
+        model, harness, skill, task, seed, EFFECTS, plans,
         "stateful synthetic PLM/test-gate policy; no grader targets are visible to the policy",
     )
 

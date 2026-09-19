@@ -1,5 +1,5 @@
 {
-  "version": "state-grader@2.0.0",
+  "version": "state-grader@3.0.0",
   "diagnostic_weights": {
     "target_state": 0.55,
     "evidence": 0.25,
