@@ -5,7 +5,7 @@ description: 本书的论文、官方项目、代码、标准与研究机构来�
 
 # 参考文献
 
-以下来源继承自研究证据账本，注册与复核日期为 2026-08-22 至 2026-08-28。`verified_primary` 表示本版已回到一手页面核对核心元数据；`unverified` 表示仅注册、尚未完成逐条元数据审定。来源类型用于导航，不代表单篇材料自动可信。
+以下来源按登记顺序保留，便于旧引用继续定位。研究始于 2026-08-22，新增资料与重点旧来源复核至 2026-09-19；这不表示每条旧来源都在该日重核。`verified_primary` 表示回到一手页面核对核心元数据；`unverified` 表示仅登记。元数据核对不等于正文所有主张已审定，更不等于独立复现实验。
 
 <span id="ref-1"></span>
 **[1]** proceedings.neurips.cc. (2024). [BetterBench: Assessing AI Benchmarks, Uncovering Issues, and Establishing Best Practices](https://proceedings.neurips.cc/paper_files/paper/2024/hash/26889e8359e7ef8a7f5d77457364ca55-Abstract-Datasets_and_Benchmarks_Track.html). *academic.*
@@ -426,3 +426,81 @@ description: 本书的论文、官方项目、代码、标准与研究机构来�
 
 <span id="ref-140"></span>
 **[140]** Haonan Li et al. (2023). [CMMLU: Measuring massive multitask language understanding in Chinese](https://arxiv.org/abs/2306.09212). *academic.*
+
+<span id="ref-141"></span>
+**[141]** Quan Shi et al. (2026). [τ^τ-Bench: An Environment for End-To-End, Realistic Agent Construction](https://arxiv.org/html/2609.04611v1). *论文.*
+
+<span id="ref-142"></span>
+**[142]** Zixuan Ke et al. (2026). [EvoHarnessBench: Can Your Agents Keep Pace with an Evolving Harness?](https://arxiv.org/html/2609.04280v2). *论文.*
+
+<span id="ref-143"></span>
+**[143]** Veronica Chatrath et al. (2026). [READY or Not: Reliable Enterprise Agent Deployment](https://arxiv.org/html/2609.02095v1). *论文.*
+
+<span id="ref-144"></span>
+**[144]** Umesh Bodhwani, Thanh Tran, Kai Wei. (2026). [GAUGE: When Not to Trust LLM-as-a-Judge in User-Simulated Evaluation of Task-Oriented Agents](https://arxiv.org/html/2609.12191v1). *论文.*
+
+<span id="ref-145"></span>
+**[145]** Xiyuan Zhou et al. (2026). [RePro: Proof-Verified Benchmark Rewriting for Reliable Evaluation of LLM Mathematical Problem Solving](https://arxiv.org/html/2609.00062v1). *论文.*
+
+<span id="ref-146"></span>
+**[146]** Ryan Marten / Terminal-Bench. (2026). [Terminal-Bench 4.0](https://www.tbench.ai/news/terminal-bench-4-0). *官方项目或实践.*
+
+<span id="ref-147"></span>
+**[147]** Emma Yanyang Kong et al., Netflix Technology Blog. (2026). [The Lifecycle of LLM-as-a-Judge: Building, Aligning, and Monitoring at scale](https://netflixtechblog.medium.com/the-lifecycle-of-llm-as-a-judge-building-aligning-and-monitoring-at-scale-c95bd8283508). *官方项目或实践.*
+
+<span id="ref-148"></span>
+**[148]** Nell Barber, Rana Haber, Aastha Jhunjhunwala / NVIDIA. (2026). [From Wafer-Out to First Token: Codifying Supply Chain Expertise with Nemotron and Palantir Foundry](https://developer.nvidia.com/blog/from-wafer-out-to-first-token-codifying-supply-chain-expertise-with-nemotron-and-palantir-foundry/). *官方项目或实践.*
+
+<span id="ref-149"></span>
+**[149]** Stefan Abi-Karam, Callie Hao. (2026). [Benchmarking Agentic HLS Design Tasks With HLS-Eval](https://arxiv.org/html/2609.09526v1). *论文.*
+
+<span id="ref-150"></span>
+**[150]** Kaushik Chandana et al. (2026). [HLSFactory-Agent: Large-Scale Agentic HLS Dataset Construction from Academic and Open-Source Projects](https://arxiv.org/abs/2609.09519). *论文.*
+
+<span id="ref-151"></span>
+**[151]** Pengshan Cai et al. (2026). [AREAs-Lab: An Interactive Environment for AI-driven Requirement Elicitation for AI Systems](https://arxiv.org/abs/2608.28979). *论文.*
+
+<span id="ref-152"></span>
+**[152]** TMLR Paper12197 Authors. (2026). [SANE: Automated Scorer-Specific Metamorphic Testing for LLM Judges](https://openreview.net/forum?id=q2kabbh38L). *官方项目或实践.*
+
+<span id="ref-153"></span>
+**[153]** Mia Lassiter, Brinnae Bent. (2026). [Defining AI Agents: A Compendium of Criteria, Metrics, and Benchmarks](https://arxiv.org/abs/2609.11018). *论文.*
+
+<span id="ref-154"></span>
+**[154]** Sandeep Kulkarni, Chandana Keswarkar / AWS. (2026). [Building a Production AI Agent on AWS: A Six-Pillar Walkthrough](https://aws.amazon.com/blogs/industries/building-a-production-ai-agent-on-aws-a-six-pillar-walkthrough/). *官方项目或实践.*
+
+<span id="ref-155"></span>
+**[155]** Haozhe Chen, Karthik Narasimhan, Zhuang Liu. (2026). [CEO-Bench](https://ceobench.com/). *官方项目或实践.*
+
+<span id="ref-156"></span>
+**[156]** Maksim Shaposhnikov et al. (2026). [A Framework for Evaluating Agentic Skills at Scale](https://arxiv.org/abs/2606.17819). *论文.*
+
+<span id="ref-157"></span>
+**[157]** TIGER-AI-Lab / NAIL Group. (2026). [ClawBench: Can AI Agents Complete Everyday Online Tasks?](https://github.com/TIGER-AI-Lab/ClawBench). *官方项目或实践.*
+
+<span id="ref-158"></span>
+**[158]** ARC Prize. (2026). [ARC Prize 2026 - ARC-AGI-3 Competition](https://arcprize.org/competitions/2026/arc-agi-3). *官方项目或实践.*
+
+<span id="ref-159"></span>
+**[159]** Gian Segato / Anthropic. (2026). [Quantifying infrastructure noise in agentic coding evals](https://www.anthropic.com/engineering/infrastructure-noise). *官方项目或实践.*
+
+<span id="ref-160"></span>
+**[160]** Steven R. Howard et al. (2021). [Time-uniform, nonparametric, nonasymptotic confidence sequences](https://arxiv.org/abs/1810.08240). *论文.*
+
+<span id="ref-161"></span>
+**[161]** SHARC Lab. (2026). [HLS-Eval](https://github.com/sharc-lab/hls-eval). *官方项目或实践.*
+
+<span id="ref-162"></span>
+**[162]** AI4Engi. (2026). [RePro](https://github.com/AI4Engi/RePro). *官方项目或实践.*
+
+<span id="ref-163"></span>
+**[163]** Salesforce Research et al. (2026). [EvoHarnessBench: Can Your Agents Keep Pace with an Evolving Harness?](https://mas-orchestra.salesforceresearch.ai/evoharness/). *官方项目或实践.*
+
+<span id="ref-164"></span>
+**[164]** SHARC Lab. (2026). [HLSFactory-Agent](https://github.com/sharc-lab/hlsfactory-agent). *官方项目或实践.*
+
+<span id="ref-165"></span>
+**[165]** Terminal-Bench. (2026). [Benchmarks](https://www.tbench.ai/benchmarks). *官方项目或实践.*
+
+<span id="ref-166"></span>
+**[166]** LENSHOOD. (2026). [AI Benchmark Book design templates](https://github.com/LENSHOOD/ai-benchmark-book/tree/main/templates). *本项目源码.*

@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "release" / "v0.4.0-source.sha256"
+MANIFEST = ROOT / "release" / "v0.5.0-source.sha256"
 ROOT_FILES = {
     ".gitignore",
     "CONTRIBUTING.md",

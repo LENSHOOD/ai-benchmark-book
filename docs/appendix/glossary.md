@@ -43,7 +43,7 @@ description: 本书关键测量、Agent 与企业评测术语
 | Trace / Trajectory | Agent 在 episode 中的观察、调用、状态与错误记录。 |
 | Tool calling | 选择工具并生成参数；只是业务完成的一部分。 |
 | pass@k | k 次尝试至少一次成功的概率/估计，偏向搜索和候选生成。 |
-| pass^k | 连续 k 次均成功的可靠性概念，偏向重复服务。 |
+| pass^k | 同一道任务重复 k 次均成功，关注运行稳定性。连续处理不同业务任务时，还须考虑各题难度和共同故障。 |
 | Trial | 同一系统—任务组合的一次运行。 |
 | Pairing | 让候选运行相同任务/状态，再分析任务级差值。 |
 | Ablation | 消融实验。移除或替换一个组件，观察结果怎样变化。 |
@@ -63,3 +63,10 @@ description: 本书关键测量、Agent 与企业评测术语
 | Recertification | 复证。组件、任务、政策或环境变化后，重新证明系统仍满足授权条件。 |
 | Capability license | 记录数字员工任务范围、权限、版本、证据、到期和复证条件的治理对象。 |
 | FDE | Forward-Deployed Engineer，一线部署工程师。这个角色和业务团队一起找问题、改流程，并把 AI 系统接入真实工作。 |
+| EVT | Engineering Validation Test，工程验证阶段。用早期样机检查主要技术方案与功能能否成立；具体入口和退出条件由团队定义。 |
+| DVT | Design Validation Test，设计验证阶段。检查较完整的设计是否满足性能、可靠性和合规等要求。 |
+| PVT | Production Validation Test，生产验证阶段。通过试产检查工艺、设备和质量控制是否支持稳定制造。 |
+| PLM | Product Lifecycle Management，产品生命周期管理。管理需求、设计版本、零部件和工程变更等信息与流程。 |
+| BOM | Bill of Materials，物料清单。记录产品由哪些零部件组成，以及数量、版本等要求。 |
+| ECR | Engineering Change Request，工程变更申请。提出需要修改什么、为何修改及影响范围；提出申请不等于已经获准实施。 |
+| PCN | Product Change Notification，产品变更通知。通常由供应商说明器件或制造过程的变化，使用方需要评估对现有设计的影响。 |

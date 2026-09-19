@@ -59,7 +59,7 @@ def vitepress_slug(title: str) -> str:
 
 
 def heading_anchors(path: Path) -> set[str]:
-    anchors: set[str] = set()
+    anchors: set[str] = set(re.findall(r'<(?:a|span)\s+id="([^"]+)"', path.read_text()))
     counts: dict[str, int] = {}
     for match in re.finditer(r"^#{1,6}\s+(.+?)\s*#*\s*$", path.read_text(), re.MULTILINE):
         title = match.group(1)
@@ -95,8 +95,7 @@ if len(source_ids) != len(set(source_ids)):
     errors.append("duplicate source_id in source ledger")
 registered_urls: set[str] = set()
 for row in source_rows:
-    for key in ("raw_url", "canonical_locator"):
-        value = row.get(key)
+    for value in [row.get("raw_url"), row.get("canonical_locator"), *row.get("alternate_urls", [])]:
         if isinstance(value, str) and value.startswith("http"):
             registered_urls.add(normalize_url(value))
         elif isinstance(value, str) and value.startswith("arxiv:"):
@@ -231,7 +230,7 @@ for filename, url in empirical_anchors.items():
         errors.append(f"verified empirical anchor missing from {filename}: {url}")
 
 home_text = (DOCS / "index.md").read_text()
-if "v0.4 beta" not in home_text:
+if "v0.5 beta" not in home_text:
     errors.append("home page must disclose the current beta maturity")
 if not re.search(rf"共(?:有)? {verified_primary_count} 条标记为 `verified_primary`", home_text):
     errors.append("home page verified-source count does not match the source ledger")

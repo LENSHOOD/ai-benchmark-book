@@ -39,7 +39,9 @@ class BenchmarkCoreContractTests(unittest.TestCase):
 
     def test_corrupting_target_does_not_change_policy_and_fails_grader(self):
         corrupted = replace(self.task, target_state={"reservation": "impossible_value"})
-        result = grade("test", "test@1", "candidate", corrupted, 0, 10, self.output)
+        rerun = execute("capable", "workflow", "domain", corrupted.public_view(), 10)
+        self.assertEqual(self.output, rerun)
+        result = grade("test", "test@1", "candidate", corrupted, 0, 10, rerun)
         self.assertFalse(result.passed)
         self.assertEqual(result.failure_class, "target_state")
 

@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 import json
 from pathlib import Path
 import sys
+from uuid import uuid4
 
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -14,7 +15,7 @@ from examples.hardware_rnd.run import run as run_hardware
 
 
 OUTPUT_ROOT = Path(__file__).resolve().parent / "results"
-stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ-") + uuid4().hex[:8]
 
 for name, runner in (("commerce_supply_chain", run_commerce), ("hardware_rnd", run_hardware)):
     rows = runner()
